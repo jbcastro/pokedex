@@ -2,7 +2,7 @@ import React from "react";
 import "./styles/DetailView.css";
 
 const ShinyView = ({ pokemon, handleTypeClick, handleShinyClick }) => {
-  const { id, name, type, moves, image, sprite, shiny } = pokemon;
+  const { id, name, type, moves, shiny } = pokemon;
 
   return (
     <section className="detail-view">
