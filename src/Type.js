@@ -1,7 +1,7 @@
 class Type {
   constructor(data) {
     this.id = data.id;
-    this.name = data.name;
+    this.name1 = data.name;
   }
 }
 

@@ -10,6 +10,7 @@ const PokeList = ({ handleOnClick }) => {
         key={pokeClass.id}
         pokeClass={pokeClass}
         handleOnClick={handleOnClick}
+        pokeType={pokeClass.type}
       />
     );
   });

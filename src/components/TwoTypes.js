@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles/DetailView.css";
 
-const DetailView = ({ pokemon, handleTypeClick, handleShinyClick }) => {
+const TwoTypes = ({ pokemon, handleTypeClick, handleShinyClick }) => {
   const { typesCount } = pokemon;
 
   console.log(typesCount);

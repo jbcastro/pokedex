@@ -5,17 +5,19 @@ import ShinyView from "./ShinyView";
 import Unselectedview from "./UnselectedView";
 import Pokemon from "../Pokemon";
 import Type from "../Type";
+import Type2 from "../Type2";
 import DropDown from "./DropDown";
 
 import "./styles/App.css";
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       pokemon: "unselected",
       type: {},
-      isNotShiny: true
+      isNotShiny: true,
+      type2: {}
     };
     this.handleOnClick = this.handleOnClick.bind(this);
     // this.handleTypeClick = this.handleTypeClick.bind(this);
@@ -28,6 +30,7 @@ class App extends Component {
       .then(data => {
         const type = new Type(data);
         this.setState({ type });
+
         console.log(type);
       })
       .catch(err => console.log(err));
@@ -50,6 +53,7 @@ class App extends Component {
   render() {
     const unselected1 = this.state.pokemon === "unselected";
     const isNotShiny1 = this.state.isNotShiny;
+
     if (unselected1) {
       return (
         <div className="App">
@@ -79,6 +83,7 @@ class App extends Component {
             handleTypeClick={this.handleTypeClick}
             handleShinyClick={this.handleShinyClick}
           />
+
           <DropDown handleSelect={this.handleSelect} type={this.state.type} />
         </div>
       );
