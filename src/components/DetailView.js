@@ -7,7 +7,8 @@ const DetailView = ({
   handleShinyClick,
   handleTypeFitlering
 }) => {
-  const { name, type, moves, sprite } = pokemon;
+  const { name, moves, sprite, type, boner } = pokemon;
+  // const { type } = type;
 
   return (
     <section className="detail-view">
@@ -19,6 +20,7 @@ const DetailView = ({
         {/* <button onClick={() => handleTypeClick(type)}>Type : {type}</button> */}
         <p className="data-char">Move: {moves}</p>
         <p className="data-char">Type: {type}</p>
+
         {/* <button onClick={() => handleTypeFitlering()}>tytdssv </button> */}
       </div>
     </section>

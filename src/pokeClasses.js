@@ -912,3 +912,6 @@ export const pokeClasses = [
     type2: null
   }
 ];
+export default {
+  pokeClasses
+};

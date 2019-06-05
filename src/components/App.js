@@ -17,7 +17,8 @@ class App extends Component {
       pokemon: "unselected",
       type: {},
       isNotShiny: true,
-      name1: {}
+      name1: {},
+      pokeClass: {}
 
       // typesCount: "1"
     };
@@ -25,6 +26,7 @@ class App extends Component {
     // this.handleTypeClick = this.handleTypeClick.bind(this);
     this.handleShinyClick = this.handleShinyClick.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
+    this.handleTypeSetting = this.handleTypeSetting.bind(this);
     // this.handleTypeFitlering = this.handleTypeFitlering.bind(this);
   }
   // filterMon() {
@@ -32,19 +34,23 @@ class App extends Component {
   //     console.log("butt");
   //   }
   // }
-  // handleSelect(id) {
-  //   fetch(`http://pokeapi.co/api/v2/type/${id}/`)
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       const type = new Type(data);
-  //       this.setState({ type });
+  handleSelect(id) {
+    fetch(`http://pokeapi.co/api/v2/type/${id}/`)
+      .then(res => res.json())
+      .then(data => {
+        const type = new Type(data);
+        const pokeClass = data;
+        this.setState({ type });
 
-  //       console.log(type);
-  //     })
+        console.log(type);
+        // console.log(data);
+      })
 
-  //     .catch(err => console.log(err));
-  // }
-  handleSelect() {}
+      .catch(err => console.log(err));
+  }
+  handleTypeSetting() {
+    // this.setState({ type: this.type });
+  }
 
   handleShinyClick() {
     this.setState({ isNotShiny: !this.state.isNotShiny });

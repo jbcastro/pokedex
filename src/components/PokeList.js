@@ -5,12 +5,14 @@ import "./styles/PokeList.css";
 
 const PokeList = ({ handleOnClick }) => {
   const cells = pokeClasses.map(pokeClass => {
-    console.log({ pokeClass });
+    // console.log({ pokeClass });
     return (
       <PokeCell
         key={pokeClass.id}
         pokeClass={pokeClass}
         handleOnClick={handleOnClick}
+        type={pokeClass.type}
+        id={pokeClass.id}
         // pokeType={pokeClass.type}
       />
     );
