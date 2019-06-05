@@ -5,7 +5,7 @@ import ShinyView from "./ShinyView";
 import Unselectedview from "./UnselectedView";
 import Pokemon from "../Pokemon";
 import Type from "../Type";
-import Type2 from "../Type2";
+// import Type2 from "../Type2";
 import DropDown from "./DropDown";
 
 import "./styles/App.css";
@@ -17,24 +17,34 @@ class App extends Component {
       pokemon: "unselected",
       type: {},
       isNotShiny: true,
-      type2: {}
+      name1: {}
+
+      // typesCount: "1"
     };
     this.handleOnClick = this.handleOnClick.bind(this);
     // this.handleTypeClick = this.handleTypeClick.bind(this);
     this.handleShinyClick = this.handleShinyClick.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
+    // this.handleTypeFitlering = this.handleTypeFitlering.bind(this);
   }
-  handleSelect(id) {
-    fetch(`http://pokeapi.co/api/v2/type/${id}/`)
-      .then(res => res.json())
-      .then(data => {
-        const type = new Type(data);
-        this.setState({ type });
+  // filterMon() {
+  //   {
+  //     console.log("butt");
+  //   }
+  // }
+  // handleSelect(id) {
+  //   fetch(`http://pokeapi.co/api/v2/type/${id}/`)
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       const type = new Type(data);
+  //       this.setState({ type });
 
-        console.log(type);
-      })
-      .catch(err => console.log(err));
-  }
+  //       console.log(type);
+  //     })
+
+  //     .catch(err => console.log(err));
+  // }
+  handleSelect() {}
 
   handleShinyClick() {
     this.setState({ isNotShiny: !this.state.isNotShiny });
@@ -46,15 +56,37 @@ class App extends Component {
         const pokemon = new Pokemon(data);
 
         this.setState({ pokemon });
+        console.log(pokemon);
       })
       .catch(err => console.log(err));
   }
+  // handleTypeFitlering(id) {
+  //   fetch(`http://pokeapi.co/api/v2/type/${id}`)
+  //     .then(res => res.json())
+  //     .then(data => {})
+  //     .catch(err => console.log(err));
+  // }
 
   render() {
     const unselected1 = this.state.pokemon === "unselected";
     const isNotShiny1 = this.state.isNotShiny;
+    // const typesCount = this.state.typesCount;
+    const whatType = this.state.type.name1;
 
-    if (unselected1) {
+    if (whatType === "flying") {
+      return (
+        <div className="App">
+          <PokeList handleOnClick={this.handleOnClick} />
+          <DetailView
+            pokemon={this.state.pokemon}
+            handleTypeClick={this.handleTypeClick}
+            handleShinyClick={this.handleShinyClick}
+            handleTypeFitlering={this.handleTypeFitlering}
+          />
+          <DropDown handleSelect={this.handleSelect} type={this.state.type} />
+        </div>
+      );
+    } else if (unselected1) {
       return (
         <div className="App">
           <PokeList handleOnClick={this.handleOnClick} />

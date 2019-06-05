@@ -3,7 +3,7 @@ import "./styles/DetailView.css";
 import ash from "../img/ash.png";
 
 const UnselectedView = ({ pokemon }) => {
-  const { id, name, type, moves } = pokemon;
+  // const { id, name, type, moves } = pokemon;
 
   return (
     <section className="detail-view">
