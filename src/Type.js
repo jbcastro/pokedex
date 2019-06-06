@@ -1,6 +1,6 @@
 class Type {
   constructor(data) {
-    this.type = data.type;
+    this.type = data.name;
   }
 }
 

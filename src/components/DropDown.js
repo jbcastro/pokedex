@@ -1,6 +1,16 @@
 import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
+import { pokeClasses } from "../pokeClasses";
+import pokemon from "./App";
+
 const DropDown = ({ type, handleSelect }) => {
+  const bill = type.type;
+  const typeFilter = pokeClasses.filter(steve => {
+    return steve.type.toLowerCase() === bill;
+  });
+  console.log(typeFilter);
+  console.log("bill " + bill);
+
   return (
     <Dropdown>
       <Dropdown.Toggle variant="success" id="dropdown-basic">

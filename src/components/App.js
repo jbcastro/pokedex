@@ -26,7 +26,7 @@ class App extends Component {
     // this.handleTypeClick = this.handleTypeClick.bind(this);
     this.handleShinyClick = this.handleShinyClick.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
-    this.handleTypeSetting = this.handleTypeSetting.bind(this);
+    // this.handleTypeSetting = this.handleTypeSetting.bind(this);
     // this.handleTypeFitlering = this.handleTypeFitlering.bind(this);
   }
   // filterMon() {
@@ -35,28 +35,22 @@ class App extends Component {
   //   }
   // }
   handleSelect(id) {
-    fetch(`http://pokeapi.co/api/v2/type/${id}/`)
+    fetch(`https://pokeapi.co/api/v2/type/${id}/`)
       .then(res => res.json())
       .then(data => {
         const type = new Type(data);
-        const pokeClass = data;
-        this.setState({ type });
 
-        console.log(type);
-        // console.log(data);
+        this.setState({ type });
       })
 
       .catch(err => console.log(err));
-  }
-  handleTypeSetting() {
-    // this.setState({ type: this.type });
   }
 
   handleShinyClick() {
     this.setState({ isNotShiny: !this.state.isNotShiny });
   }
   handleOnClick(id) {
-    fetch(`http://pokeapi.co/api/v2/pokemon/${id}/`)
+    fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
       .then(res => res.json())
       .then(data => {
         const pokemon = new Pokemon(data);
@@ -77,22 +71,8 @@ class App extends Component {
     const unselected1 = this.state.pokemon === "unselected";
     const isNotShiny1 = this.state.isNotShiny;
     // const typesCount = this.state.typesCount;
-    const whatType = this.state.type.name1;
 
-    if (whatType === "flying") {
-      return (
-        <div className="App">
-          <PokeList handleOnClick={this.handleOnClick} />
-          <DetailView
-            pokemon={this.state.pokemon}
-            handleTypeClick={this.handleTypeClick}
-            handleShinyClick={this.handleShinyClick}
-            handleTypeFitlering={this.handleTypeFitlering}
-          />
-          <DropDown handleSelect={this.handleSelect} type={this.state.type} />
-        </div>
-      );
-    } else if (unselected1) {
+    if (unselected1) {
       return (
         <div className="App">
           <PokeList handleOnClick={this.handleOnClick} />

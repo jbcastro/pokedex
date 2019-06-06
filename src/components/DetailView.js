@@ -7,7 +7,7 @@ const DetailView = ({
   handleShinyClick,
   handleTypeFitlering
 }) => {
-  const { name, moves, sprite, type, boner } = pokemon;
+  const { name, moves, sprite, type } = pokemon;
   // const { type } = type;
 
   return (
