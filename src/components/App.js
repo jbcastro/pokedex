@@ -7,6 +7,7 @@ import Pokemon from "../Pokemon";
 import Type from "../Type";
 // import Type2 from "../Type2";
 import DropDown from "./DropDown";
+import BillList from "./BillList";
 
 import "./styles/App.css";
 
@@ -23,17 +24,11 @@ class App extends Component {
       // typesCount: "1"
     };
     this.handleOnClick = this.handleOnClick.bind(this);
-    // this.handleTypeClick = this.handleTypeClick.bind(this);
+
     this.handleShinyClick = this.handleShinyClick.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
-    // this.handleTypeSetting = this.handleTypeSetting.bind(this);
-    // this.handleTypeFitlering = this.handleTypeFitlering.bind(this);
   }
-  // filterMon() {
-  //   {
-  //     console.log("butt");
-  //   }
-  // }
+
   handleSelect(id) {
     fetch(`https://pokeapi.co/api/v2/type/${id}/`)
       .then(res => res.json())
@@ -70,6 +65,7 @@ class App extends Component {
   render() {
     const unselected1 = this.state.pokemon === "unselected";
     const isNotShiny1 = this.state.isNotShiny;
+
     // const typesCount = this.state.typesCount;
 
     if (unselected1) {
@@ -78,6 +74,7 @@ class App extends Component {
           <PokeList handleOnClick={this.handleOnClick} />
           <Unselectedview pokemon={this.state.pokemon} />
           <DropDown handleSelect={this.handleSelect} type={this.state.type} />
+          {/* <BillList /> */}
         </div>
       );
     } else if (isNotShiny1) {
@@ -90,6 +87,7 @@ class App extends Component {
             handleShinyClick={this.handleShinyClick}
           />
           <DropDown handleSelect={this.handleSelect} type={this.state.type} />
+          {/* <BillList /> */}
         </div>
       );
     } else {
@@ -103,6 +101,7 @@ class App extends Component {
           />
 
           <DropDown handleSelect={this.handleSelect} type={this.state.type} />
+          {/* <BillList /> */}
         </div>
       );
     }
