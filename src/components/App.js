@@ -8,6 +8,7 @@ import Type from "../Type";
 // import Type2 from "../Type2";
 import DropDown from "./DropDown";
 import BillList from "./BillList";
+import TypeList from "./TypeList";
 
 import "./styles/App.css";
 
@@ -23,6 +24,7 @@ class App extends Component {
 
       // typesCount: "1"
     };
+
     this.handleOnClick = this.handleOnClick.bind(this);
 
     this.handleShinyClick = this.handleShinyClick.bind(this);
@@ -86,6 +88,7 @@ class App extends Component {
             handleTypeClick={this.handleTypeClick}
             handleShinyClick={this.handleShinyClick}
           />
+
           <DropDown handleSelect={this.handleSelect} type={this.state.type} />
           {/* <BillList /> */}
         </div>
