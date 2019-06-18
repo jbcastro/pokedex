@@ -164,21 +164,21 @@ export const pokeClasses = [
     backgroundPosition: "-2741px 0",
     type: "poison",
     type2: null,
-    name: ""
+    name: "Ekans"
   },
   {
     id: "24",
     backgroundPosition: "-2866px 0",
     type: "poison",
     type2: null,
-    name: "Ekans"
+    name: "Arbok"
   },
   {
     id: "25",
     backgroundPosition: "-2991px 0",
     type: "electric",
     type2: null,
-    name: "Arbok"
+    name: "Pickachu"
   },
   {
     id: "26",

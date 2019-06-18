@@ -7,8 +7,6 @@ import Pokemon from "../Pokemon";
 import Type from "../Type";
 // import Type2 from "../Type2";
 import DropDown from "./DropDown";
-import BillList from "./BillList";
-import TypeList from "./TypeList";
 
 import "./styles/App.css";
 
@@ -19,37 +17,45 @@ class App extends Component {
       pokemon: "unselected",
       type: {},
       isNotShiny: true,
-
-      names: {}
+      name1: {},
+      pokeClass: {}
 
       // typesCount: "1"
     };
-
     this.handleOnClick = this.handleOnClick.bind(this);
-    this.handleTypeFilter = this.handleTypeFilter.bind(this);
+    // this.handleTypeClick = this.handleTypeClick.bind(this);
     this.handleShinyClick = this.handleShinyClick.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
+    this.handleTypeSetting = this.handleTypeSetting.bind(this);
+    // this.handleTypeFitlering = this.handleTypeFitlering.bind(this);
   }
-
-  handleSelect(id, typeFilterName) {
+  // filterMon() {
+  //   {
+  //     console.log("butt");
+  //   }
+  // }
+  handleSelect(id) {
     fetch(`https://pokeapi.co/api/v2/type/${id}/`)
       .then(res => res.json())
       .then(data => {
         const type = new Type(data);
-
+        const pokeClass = data;
         this.setState({ type });
-        this.setState({ name: typeFilterName });
+
+        console.log(type);
+        // console.log(data);
       })
+
       .catch(err => console.log(err));
   }
-  handleTypeFilter(typeFilterName) {
-    this.setState({ names: typeFilterName });
+  handleTypeSetting() {
+    // this.setState({ type: this.type });
   }
 
   handleShinyClick() {
     this.setState({ isNotShiny: !this.state.isNotShiny });
   }
-  handleOnClick(id) {
+  handleOnClick(id, butt) {
     fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
       .then(res => res.json())
       .then(data => {
@@ -70,21 +76,28 @@ class App extends Component {
   render() {
     const unselected1 = this.state.pokemon === "unselected";
     const isNotShiny1 = this.state.isNotShiny;
-
     // const typesCount = this.state.typesCount;
+    const whatType = this.state.type.name1;
 
-    if (unselected1) {
+    if (whatType === "flying") {
+      return (
+        <div className="App">
+          <PokeList handleOnClick={this.handleOnClick} />
+          <DetailView
+            pokemon={this.state.pokemon}
+            handleTypeClick={this.handleTypeClick}
+            handleShinyClick={this.handleShinyClick}
+            handleTypeFitlering={this.handleTypeFitlering}
+          />
+          <DropDown handleSelect={this.handleSelect} type={this.state.type} />
+        </div>
+      );
+    } else if (unselected1) {
       return (
         <div className="App">
           <PokeList handleOnClick={this.handleOnClick} />
           <Unselectedview pokemon={this.state.pokemon} />
-          <DropDown
-            handleSelect={this.handleSelect}
-            handleTypeFilter={this.handleTypeFilter}
-            type={this.state.type}
-          />
-
-          {/* <BillList /> */}
+          <DropDown handleSelect={this.handleSelect} type={this.state.type} />
         </div>
       );
     } else if (isNotShiny1) {
@@ -96,12 +109,7 @@ class App extends Component {
             handleTypeClick={this.handleTypeClick}
             handleShinyClick={this.handleShinyClick}
           />
-          <DropDown
-            handleSelect={this.handleSelect}
-            handleTypeFilter={this.handleTypeFilter}
-            type={this.state.type}
-          />{" "}
-          {/* <BillList /> */}
+          <DropDown handleSelect={this.handleSelect} type={this.state.type} />
         </div>
       );
     } else {
@@ -113,12 +121,8 @@ class App extends Component {
             handleTypeClick={this.handleTypeClick}
             handleShinyClick={this.handleShinyClick}
           />
-          <DropDown
-            handleSelect={this.handleSelect}
-            handleTypeFilter={this.handleTypeFilter}
-            type={this.state.type}
-          />{" "}
-          {/* <BillList /> */}
+
+          <DropDown handleSelect={this.handleSelect} type={this.state.type} />
         </div>
       );
     }
@@ -184,3 +188,5 @@ class App extends Component {
 }
 
 export default App;
+
+732233664

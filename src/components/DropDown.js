@@ -5,7 +5,7 @@ import pokemon from "./App";
 import BillList from "./BillList";
 import TypeList from "./TypeList";
 
-const DropDown = ({ type, handleSelect }) => {
+const DropDown = ({ type, handleSelect, handleTypeFilter }) => {
   const bill = type.type;
   const typeFilter = pokeClasses.filter(steve => {
     return steve.type.toLowerCase() === bill;
@@ -25,24 +25,162 @@ const DropDown = ({ type, handleSelect }) => {
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
-        <Dropdown.Item onClick={() => handleSelect(1)}>Normal</Dropdown.Item>
-        <Dropdown.Item onClick={() => handleSelect(2)}>Fighting</Dropdown.Item>
-        <Dropdown.Item onClick={() => handleSelect(3)}>Flying</Dropdown.Item>
-        <Dropdown.Item onClick={() => handleSelect(4)}>Poison</Dropdown.Item>
-        <Dropdown.Item onClick={() => handleSelect(5)}>Ground</Dropdown.Item>
-        <Dropdown.Item onClick={() => handleSelect(6)}>Rock </Dropdown.Item>
-        <Dropdown.Item onClick={() => handleSelect(7)}>Bug </Dropdown.Item>
-        <Dropdown.Item onClick={() => handleSelect(8)}>Ghost </Dropdown.Item>
-        <Dropdown.Item onClick={() => handleSelect(9)}>Steel</Dropdown.Item>
-        <Dropdown.Item onClick={() => handleSelect(10)}>Fire</Dropdown.Item>
-        <Dropdown.Item onClick={() => handleSelect(11)}>Water</Dropdown.Item>
-        <Dropdown.Item onClick={() => handleSelect(12)}>Grass</Dropdown.Item>
-        <Dropdown.Item onClick={() => handleSelect(13)}>Electric</Dropdown.Item>
-        <Dropdown.Item onClick={() => handleSelect(14)}>Psychic</Dropdown.Item>
-        <Dropdown.Item onClick={() => handleSelect(15)}>Ice</Dropdown.Item>
-        <Dropdown.Item onClick={() => handleSelect(16)}>Dragon</Dropdown.Item>
-        <Dropdown.Item onClick={() => handleSelect(17)}>Dark</Dropdown.Item>
-        <Dropdown.Item onClick={() => handleSelect(18)}>Fairy</Dropdown.Item>
+        <Dropdown.Item
+          onClick={() => {
+            handleSelect(1);
+            handleTypeFilter(typeFilterName);
+          }}
+        >
+          Normal
+        </Dropdown.Item>
+
+        <Dropdown.Menu>
+          <Dropdown.Item
+            onClick={() => {
+              handleSelect(1);
+              handleTypeFilter(typeFilterName);
+            }}
+          >
+            Normal2
+          </Dropdown.Item>
+        </Dropdown.Menu>
+
+        <Dropdown.Item
+          onClick={() => {
+            handleSelect(2);
+            handleTypeFilter(typeFilterName);
+          }}
+        >
+          Fighting
+        </Dropdown.Item>
+        <Dropdown.Item
+          onClick={() => {
+            handleSelect(3);
+            handleTypeFilter(typeFilterName);
+          }}
+        >
+          Flying
+        </Dropdown.Item>
+        <Dropdown.Item
+          onClick={() => {
+            handleSelect(4);
+            handleTypeFilter(typeFilterName);
+          }}
+        >
+          Poison
+        </Dropdown.Item>
+        <Dropdown.Item
+          onClick={() => {
+            handleSelect(5);
+            handleTypeFilter(typeFilterName);
+          }}
+        >
+          Ground
+        </Dropdown.Item>
+        <Dropdown.Item
+          onClick={() => {
+            handleSelect(6);
+            handleTypeFilter(typeFilterName);
+          }}
+        >
+          Rock
+        </Dropdown.Item>
+        <Dropdown.Item
+          onClick={() => {
+            handleSelect(7);
+            handleTypeFilter(typeFilterName);
+          }}
+        >
+          Bug
+        </Dropdown.Item>
+        <Dropdown.Item
+          onClick={() => {
+            handleSelect(8);
+            handleTypeFilter(typeFilterName);
+          }}
+        >
+          Ghost
+        </Dropdown.Item>
+        <Dropdown.Item
+          onClick={() => {
+            handleSelect(9);
+            handleTypeFilter(typeFilterName);
+          }}
+        >
+          Steel
+        </Dropdown.Item>
+        <Dropdown.Item
+          onClick={() => {
+            handleSelect(10);
+            handleTypeFilter(typeFilterName);
+          }}
+        >
+          Fire
+        </Dropdown.Item>
+        <Dropdown.Item
+          onClick={() => {
+            handleSelect(11);
+            handleTypeFilter(typeFilterName);
+          }}
+        >
+          Water
+        </Dropdown.Item>
+        <Dropdown.Item
+          onClick={() => {
+            handleSelect(12);
+            handleTypeFilter(typeFilterName);
+          }}
+        >
+          Grass
+        </Dropdown.Item>
+        <Dropdown.Item
+          onClick={() => {
+            handleSelect(13);
+            handleTypeFilter(typeFilterName);
+          }}
+        >
+          Electric
+        </Dropdown.Item>
+        <Dropdown.Item
+          onClick={() => {
+            handleSelect(14);
+            handleTypeFilter(typeFilterName);
+          }}
+        >
+          Psychic
+        </Dropdown.Item>
+        <Dropdown.Item
+          onClick={() => {
+            handleSelect(15);
+            handleTypeFilter(typeFilterName);
+          }}
+        >
+          Ice
+        </Dropdown.Item>
+        <Dropdown.Item
+          onClick={() => {
+            handleSelect(16);
+            handleTypeFilter(typeFilterName);
+          }}
+        >
+          Dragon
+        </Dropdown.Item>
+        <Dropdown.Item
+          onClick={() => {
+            handleSelect(17);
+            handleTypeFilter(typeFilterName);
+          }}
+        >
+          Dark
+        </Dropdown.Item>
+        <Dropdown.Item
+          onClick={() => {
+            handleSelect(18);
+            handleTypeFilter(typeFilterName);
+          }}
+        >
+          Fairy
+        </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
   );
