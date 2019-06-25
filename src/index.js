@@ -7,3 +7,6 @@ import "bootstrap/dist/css/bootstrap.css";
 
 ReactDOM.render(<App />, document.getElementById("root"));
 registerServiceWorker();
+// setTimeout(() => {
+//   ReactDOM.unmountComponentAtNode(document.getElementById("app"));
+// }, 10000);

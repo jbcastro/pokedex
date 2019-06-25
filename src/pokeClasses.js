@@ -31,7 +31,7 @@ export const pokeClasses = [
     backgroundPosition: "-375px 0",
     type: "fire",
     type2: null,
-    name: "Charmander	"
+    name: "Charmander"
   },
   {
     id: "5",

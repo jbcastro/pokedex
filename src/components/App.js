@@ -7,22 +7,22 @@ import Pokemon from "../Pokemon";
 import Type from "../Type";
 // import Type2 from "../Type2";
 import DropDown from "./DropDown";
-import BillList from "./BillList";
-import TypeList from "./TypeList";
+// import BillList from "./BillList";
+// import TypeList from "./TypeList";
 
 import "./styles/App.css";
+import { pokeClasses } from "../pokeClasses";
 
 class App extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       pokemon: "unselected",
       type: {},
       isNotShiny: true,
-
-      names: {}
-
-      // typesCount: "1"
+      names: {},
+      liz: {}
     };
 
     this.handleOnClick = this.handleOnClick.bind(this);
@@ -31,25 +31,74 @@ class App extends Component {
     this.handleSelect = this.handleSelect.bind(this);
   }
 
-  handleSelect(id, typeFilterName) {
-    fetch(`https://pokeapi.co/api/v2/type/${id}/`)
+  handleSelect = event => {
+    fetch(`https://pokeapi.co/api/v2/type/${event}/`)
       .then(res => res.json())
+
       .then(data => {
         const type = new Type(data);
 
         this.setState({ type });
-        this.setState({ name: typeFilterName });
-      })
-      .catch(err => console.log(err));
-  }
-  handleTypeFilter(typeFilterName) {
-    this.setState({ names: typeFilterName });
-  }
 
-  handleShinyClick() {
+        let boi = data.pokemon;
+        // console.log(boi);
+        const laura = pokeClasses.map(value => {
+          return value.name.toLowerCase();
+        });
+        // console.log(laura);
+        const mappingFunction = p => p.pokemon.name;
+        const mappingFunction2 = p => p.pokemon.url;
+        // const mappingFunction4 = p => p.pokemon;
+
+        const sean = boi.map(mappingFunction);
+        const paul = boi.map(mappingFunction2);
+
+        // var res = paul.substr(1, 33);
+        // console.log(res);
+
+        console.log(sean);
+        // console.log(paul);
+        this.setState({ names: sean });
+
+        const yellow = pokeClasses.map(value => {
+          return parseInt(value.id);
+        });
+        // console.log(yellow);
+
+        const chief = sean.filter(value => {
+          return value !== laura;
+        });
+        console.log(chief);
+
+        this.setState({ liz: chief });
+
+        // const ryan = lily.filter(value => {
+        //   return value.name.toLowerCase() === laura;
+        // });
+
+        // console.log(ryan);
+
+        // if (sean === laura) {
+        //   console.log("cool");
+        // }
+
+        // const mappingFunction3 = p => p.pokeClasses.id;
+
+        // if (paul == "https://pokeapi.co/api/v2/pokemon/85/") {
+        // }
+      })
+
+      .catch(err => console.log(err));
+  };
+
+  handleTypeFilter = event => {
+    this.setState({ names: event });
+  };
+
+  handleShinyClick = e => {
     this.setState({ isNotShiny: !this.state.isNotShiny });
-  }
-  handleOnClick(id) {
+  };
+  handleOnClick = id => {
     fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
       .then(res => res.json())
       .then(data => {
@@ -59,19 +108,12 @@ class App extends Component {
         console.log(pokemon);
       })
       .catch(err => console.log(err));
-  }
-  // handleTypeFitlering(id) {
-  //   fetch(`http://pokeapi.co/api/v2/type/${id}`)
-  //     .then(res => res.json())
-  //     .then(data => {})
-  //     .catch(err => console.log(err));
-  // }
+  };
 
   render() {
     const unselected1 = this.state.pokemon === "unselected";
     const isNotShiny1 = this.state.isNotShiny;
-
-    // const typesCount = this.state.typesCount;
+    const castro = this.state.names;
 
     if (unselected1) {
       return (
@@ -79,12 +121,11 @@ class App extends Component {
           <PokeList handleOnClick={this.handleOnClick} />
           <Unselectedview pokemon={this.state.pokemon} />
           <DropDown
-            handleSelect={this.handleSelect}
             handleTypeFilter={this.handleTypeFilter}
+            handleSelect={this.handleSelect}
             type={this.state.type}
+            names={this.state.names}
           />
-
-          {/* <BillList /> */}
         </div>
       );
     } else if (isNotShiny1) {
@@ -97,11 +138,12 @@ class App extends Component {
             handleShinyClick={this.handleShinyClick}
           />
           <DropDown
-            handleSelect={this.handleSelect}
             handleTypeFilter={this.handleTypeFilter}
+            handleSelect={this.handleSelect}
             type={this.state.type}
-          />{" "}
-          {/* <BillList /> */}
+            names={this.state.names}
+            name={this.state.name}
+          />
         </div>
       );
     } else {
@@ -114,73 +156,110 @@ class App extends Component {
             handleShinyClick={this.handleShinyClick}
           />
           <DropDown
-            handleSelect={this.handleSelect}
             handleTypeFilter={this.handleTypeFilter}
+            handleSelect={this.handleSelect}
             type={this.state.type}
-          />{" "}
-          {/* <BillList /> */}
+            names={this.state.names}
+            name={this.state.name}
+          />
         </div>
       );
     }
   }
-
-  // handleTypeClick(type) {
-  //   fetch(`http://pokeapi.co/api/v2/type/${type}/pokemon/[0]/url/`)
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       const type = new Pokemon(data);
-  //       this.setState({ type });
-  //     })
-  //     .catch(err => console.log(err));
-  //   console.log({ type });
-  // }
-
-  // render() {
-  //   const unselected1 = this.state.pokemon;
-  //   const isShiny1 = this.state.isShiny;
-  //   return (
-  //     <div className="App">
-  //       {unselected1 === "unselected" ? (
-  //         <div>
-  //           <PokeList handleOnClick={this.handleOnClick} />
-  //           <Unselectedview pokemon={this.state.pokemon} />
-  //           <DropDown handleSelect={this.handleSelect} type={this.state.type} />
-  //         </div>
-  //       ) : (
-  //         <div>
-  //           <PokeList handleOnClick={this.handleOnClick} />
-  //           <DetailView
-  //             pokemon={this.state.pokemon}
-  //             handleTypeClick={this.handleTypeClick}
-  //             handleShinyClick={this.handleShinyClick}
-  //           />
-  //           <DropDown handleSelect={this.handleSelect} type={this.state.type} />
-  //         </div>
-  //       )}
-  //       {isShiny1 ? (
-  //         <div>
-  //           <PokeList handleOnClick={this.handleOnClick} />
-  //           <DetailView
-  //             pokemon={this.state.pokemon}
-  //             handleTypeClick={this.handleTypeClick}
-  //             handleShinyClick={this.handleShinyClick}
-  //           />
-  //           <DropDown handleSelect={this.handleSelect} type={this.state.type} />
-  //         </div>
-  //       ) : (
-  //         <div>
-  //           <PokeList handleOnClick={this.handleOnClick} />
-  //           <ShinyView
-  //             pokemon={this.state.pokemon}
-  //             handleTypeClick={this.handleTypeClick}
-  //             handleShinyClick={this.handleShinyClick}
-  //           />
-  //           <DropDown handleSelect={this.handleSelect} type={this.state.type} />
-  //         </div>
-  //       )}
-  //     </div>
-  //   );
-  // }
 }
 
 export default App;
+
+// handleTypeFitlering(id) {
+//   fetch(`http://pokeapi.co/api/v2/type/${id}`)
+//     .then(res => res.json())
+//     .then(data => {})
+//     .catch(err => console.log(err));
+// }
+
+// handleTypeClick(type) {
+//   fetch(`http://pokeapi.co/api/v2/type/${type}/pokemon/[0]/url/`)
+//     .then(res => res.json())
+//     .then(data => {
+//       const type = new Pokemon(data);
+//       this.setState({ type });
+//     })
+//     .catch(err => console.log(err));
+//   console.log({ type });
+// }
+
+// render() {
+//   const unselected1 = this.state.pokemon;
+//   const isShiny1 = this.state.isShiny;
+//   return (
+//     <div className="App">
+//       {unselected1 === "unselected" ? (
+//         <div>
+//           <PokeList handleOnClick={this.handleOnClick} />
+//           <Unselectedview pokemon={this.state.pokemon} />
+//           <DropDown handleSelect={this.handleSelect} type={this.state.type} />
+//         </div>
+//       ) : (
+//         <div>
+//           <PokeList handleOnClick={this.handleOnClick} />
+//           <DetailView
+//             pokemon={this.state.pokemon}
+//             handleTypeClick={this.handleTypeClick}
+//             handleShinyClick={this.handleShinyClick}
+//           />
+//           <DropDown handleSelect={this.handleSelect} type={this.state.type} />
+//         </div>
+//       )}
+//       {isShiny1 ? (
+//         <div>
+//           <PokeList handleOnClick={this.handleOnClick} />
+//           <DetailView
+//             pokemon={this.state.pokemon}
+//             handleTypeClick={this.handleTypeClick}
+//             handleShinyClick={this.handleShinyClick}
+//           />
+//           <DropDown handleSelect={this.handleSelect} type={this.state.type} />
+//         </div>
+//       ) : (
+//         <div>
+//           <PokeList handleOnClick={this.handleOnClick} />
+//           <ShinyView
+//             pokemon={this.state.pokemon}
+//             handleTypeClick={this.handleTypeClick}
+//             handleShinyClick={this.handleShinyClick}
+//           />
+//           <DropDown handleSelect={this.handleSelect} type={this.state.type} />
+//         </div>
+//       )}
+//     </div>
+//   );
+// }
+
+// getSnapshotBeforeUpdate(prevProps, prevState) {
+//   if (prevProps.names.length != this.props.names.length) {
+//     console.log("cool");
+//   }
+// }
+// componentDidUpdate(prevProps, prevState, snapshot) {
+//   // If we have a snapshot value, we've just added new items.
+//   // Adjust scroll so these new items don't push the old ones out of view.
+//   // (snapshot here is the value returned from getSnapshotBeforeUpdate)
+//   if (snapshot !== null) {
+//     const list = this.listRef.current;
+//     list.scrollTop = list.scrollHeight - snapshot;
+//   }
+// }
+// handleSelect = id => {
+//   fetch(`https://pokeapi.co/api/v2/type/${id}/`)
+//     .then(res => res.json())
+
+//     .then(data => {
+//       const type = new Type(data);
+
+//       this.setState({ type });
+//     })
+
+//     .catch(err => console.log(err));
+//   // this.setState({ name: typeFilterName });
+//   console.log(this.state.names);
+// };

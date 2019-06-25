@@ -99,3 +99,19 @@
 }
 
 </div>
+
+
+
+
+
+
+
+checkPencil(){
+  this.setState((prevState) => {
+      return {
+          pencil: !prevState.pencil
+      };
+  }, () => {
+      this.props.updateItem(this.state)
+  });
+}

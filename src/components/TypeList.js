@@ -1,6 +1,6 @@
-import React from "react";
-const TypeList = ({}) => {};
-export default TypeList;
+// import React from "react";
+// const TypeList = ({}) => {};
+// export default TypeList;
 
 //import TypeCell from "./TypeCell";
 // import { pokeClasses } from "../pokeClasses";

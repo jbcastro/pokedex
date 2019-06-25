@@ -1,22 +1,22 @@
 import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
-import { pokeClasses } from "../pokeClasses";
-import pokemon from "./App";
-import BillList from "./BillList";
-import TypeList from "./TypeList";
+// import { pokeClasses } from "../pokeClasses";
+// import pokemon from "./App";
+// import BillList from "./BillList";
+// import TypeList from "./TypeList";
 
-const DropDown = ({ type, handleSelect, handleTypeFilter }) => {
-  const bill = type.type;
-  const typeFilter = pokeClasses.filter(steve => {
-    return steve.type.toLowerCase() === bill;
-  });
+const DropDown = ({ type, handleSelect }) => {
+  // const bill = type.type;
 
-  const typeFilterName = typeFilter.map(value => {
-    return value.name;
-  });
-  console.log(typeFilterName);
+  // const typeFilter = pokeClasses.filter(steve => {
+  //   return steve.type.toLowerCase() === bill;
+  // });
 
-  console.log("bill " + bill);
+  // const typeFilterName = typeFilter.map(value => {
+  //   return value.name;
+  // });
+
+  // console.log("bill " + bill);
 
   return (
     <Dropdown>
@@ -28,27 +28,14 @@ const DropDown = ({ type, handleSelect, handleTypeFilter }) => {
         <Dropdown.Item
           onClick={() => {
             handleSelect(1);
-            handleTypeFilter(typeFilterName);
           }}
         >
           Normal
         </Dropdown.Item>
 
-        <Dropdown.Menu>
-          <Dropdown.Item
-            onClick={() => {
-              handleSelect(1);
-              handleTypeFilter(typeFilterName);
-            }}
-          >
-            Normal2
-          </Dropdown.Item>
-        </Dropdown.Menu>
-
         <Dropdown.Item
           onClick={() => {
             handleSelect(2);
-            handleTypeFilter(typeFilterName);
           }}
         >
           Fighting
@@ -56,7 +43,6 @@ const DropDown = ({ type, handleSelect, handleTypeFilter }) => {
         <Dropdown.Item
           onClick={() => {
             handleSelect(3);
-            handleTypeFilter(typeFilterName);
           }}
         >
           Flying
@@ -64,7 +50,6 @@ const DropDown = ({ type, handleSelect, handleTypeFilter }) => {
         <Dropdown.Item
           onClick={() => {
             handleSelect(4);
-            handleTypeFilter(typeFilterName);
           }}
         >
           Poison
@@ -72,7 +57,6 @@ const DropDown = ({ type, handleSelect, handleTypeFilter }) => {
         <Dropdown.Item
           onClick={() => {
             handleSelect(5);
-            handleTypeFilter(typeFilterName);
           }}
         >
           Ground
@@ -80,7 +64,6 @@ const DropDown = ({ type, handleSelect, handleTypeFilter }) => {
         <Dropdown.Item
           onClick={() => {
             handleSelect(6);
-            handleTypeFilter(typeFilterName);
           }}
         >
           Rock
@@ -88,7 +71,6 @@ const DropDown = ({ type, handleSelect, handleTypeFilter }) => {
         <Dropdown.Item
           onClick={() => {
             handleSelect(7);
-            handleTypeFilter(typeFilterName);
           }}
         >
           Bug
@@ -96,7 +78,6 @@ const DropDown = ({ type, handleSelect, handleTypeFilter }) => {
         <Dropdown.Item
           onClick={() => {
             handleSelect(8);
-            handleTypeFilter(typeFilterName);
           }}
         >
           Ghost
@@ -104,7 +85,6 @@ const DropDown = ({ type, handleSelect, handleTypeFilter }) => {
         <Dropdown.Item
           onClick={() => {
             handleSelect(9);
-            handleTypeFilter(typeFilterName);
           }}
         >
           Steel
@@ -112,7 +92,6 @@ const DropDown = ({ type, handleSelect, handleTypeFilter }) => {
         <Dropdown.Item
           onClick={() => {
             handleSelect(10);
-            handleTypeFilter(typeFilterName);
           }}
         >
           Fire
@@ -120,7 +99,6 @@ const DropDown = ({ type, handleSelect, handleTypeFilter }) => {
         <Dropdown.Item
           onClick={() => {
             handleSelect(11);
-            handleTypeFilter(typeFilterName);
           }}
         >
           Water
@@ -128,7 +106,6 @@ const DropDown = ({ type, handleSelect, handleTypeFilter }) => {
         <Dropdown.Item
           onClick={() => {
             handleSelect(12);
-            handleTypeFilter(typeFilterName);
           }}
         >
           Grass
@@ -136,7 +113,6 @@ const DropDown = ({ type, handleSelect, handleTypeFilter }) => {
         <Dropdown.Item
           onClick={() => {
             handleSelect(13);
-            handleTypeFilter(typeFilterName);
           }}
         >
           Electric
@@ -144,7 +120,6 @@ const DropDown = ({ type, handleSelect, handleTypeFilter }) => {
         <Dropdown.Item
           onClick={() => {
             handleSelect(14);
-            handleTypeFilter(typeFilterName);
           }}
         >
           Psychic
@@ -152,7 +127,6 @@ const DropDown = ({ type, handleSelect, handleTypeFilter }) => {
         <Dropdown.Item
           onClick={() => {
             handleSelect(15);
-            handleTypeFilter(typeFilterName);
           }}
         >
           Ice
@@ -160,7 +134,6 @@ const DropDown = ({ type, handleSelect, handleTypeFilter }) => {
         <Dropdown.Item
           onClick={() => {
             handleSelect(16);
-            handleTypeFilter(typeFilterName);
           }}
         >
           Dragon
@@ -168,7 +141,6 @@ const DropDown = ({ type, handleSelect, handleTypeFilter }) => {
         <Dropdown.Item
           onClick={() => {
             handleSelect(17);
-            handleTypeFilter(typeFilterName);
           }}
         >
           Dark
@@ -176,7 +148,6 @@ const DropDown = ({ type, handleSelect, handleTypeFilter }) => {
         <Dropdown.Item
           onClick={() => {
             handleSelect(18);
-            handleTypeFilter(typeFilterName);
           }}
         >
           Fairy
