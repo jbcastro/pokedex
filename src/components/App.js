@@ -5,6 +5,8 @@ import ShinyView from "./ShinyView";
 import Unselectedview from "./UnselectedView";
 import Pokemon from "../Pokemon";
 import Type from "../Type";
+import PokeTypeList from "../PokeTypeList"
+import TypeView from "./TypeView";
 // import Type2 from "../Type2";
 import DropDown from "./DropDown";
 // import BillList from "./BillList";
@@ -21,56 +23,67 @@ class App extends Component {
       pokemon: "unselected",
       type: {},
       isNotShiny: true,
-      names: {},
-      liz: {}
+      names: {}
     };
 
     this.handleOnClick = this.handleOnClick.bind(this);
-    this.handleTypeFilter = this.handleTypeFilter.bind(this);
+    // this.handleTypeFilter = this.handleTypeFilter.bind(this);
     this.handleShinyClick = this.handleShinyClick.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
   }
-
+  //handles type select from dropdown
   handleSelect = event => {
     fetch(`https://pokeapi.co/api/v2/type/${event}/`)
       .then(res => res.json())
 
       .then(data => {
+        //sets the type
         const type = new Type(data);
 
         this.setState({ type });
 
-        let boi = data.pokemon;
-        // console.log(boi);
+        
+
+        //gets all the info for each pokemon in that type,
+        //reading the /v2/type/X/pokeApiData
+        const pokeApiData = data.pokemon;
+        // console.log(pokeApiData)
+
+        //maps the pokemon that I have in the array in order to,
+        //in theory, cross reference with the ones from the PokeAPI
         const laura = pokeClasses.map(value => {
           return value.name.toLowerCase();
         });
-        // console.log(laura);
+        console.log(laura);
+
+        //maps the names and urls for pokeAPI
         const mappingFunction = p => p.pokemon.name;
         const mappingFunction2 = p => p.pokemon.url;
-        // const mappingFunction4 = p => p.pokemon;
+        const apiNames = pokeApiData.map(mappingFunction);
+        const apiUrls = pokeApiData.map(mappingFunction2);
 
-        const sean = boi.map(mappingFunction);
-        const paul = boi.map(mappingFunction2);
-
-        // var res = paul.substr(1, 33);
+        // var res = apiUrls.substr(1, 33);
         // console.log(res);
 
-        console.log(sean);
-        // console.log(paul);
-        this.setState({ names: sean });
+        console.log(apiNames);
+        // console.log(apiUrls);
 
-        const yellow = pokeClasses.map(value => {
+        //set state of list of pokemon by type
+        this.setState({ names: apiNames });
+
+        //parses id in pokeClasses since they are strings and
+        //I don't feel like changing them all to intergers
+        const idParsing = pokeClasses.map(value => {
           return parseInt(value.id);
         });
-        // console.log(yellow);
+        // console.log(idParsing);
 
-        const chief = sean.filter(value => {
-          return value !== laura;
-        });
-        console.log(chief);
+        // const chief = apiNames.filter(value => {
+        //   return value === laura;
+        // });
+        // console.log(chief);
 
-        this.setState({ liz: chief });
+        // this.setState({ liz: chief });
 
         // const ryan = lily.filter(value => {
         //   return value.name.toLowerCase() === laura;
@@ -78,22 +91,22 @@ class App extends Component {
 
         // console.log(ryan);
 
-        // if (sean === laura) {
+        // if (apiNames === laura) {
         //   console.log("cool");
         // }
 
         // const mappingFunction3 = p => p.pokeClasses.id;
 
-        // if (paul == "https://pokeapi.co/api/v2/pokemon/85/") {
+        // if (apiUrls == "https://pokeapi.co/api/v2/pokemon/85/") {
         // }
       })
 
       .catch(err => console.log(err));
   };
 
-  handleTypeFilter = event => {
-    this.setState({ names: event });
-  };
+  // handleTypeFilter = event => {
+  //   this.setState({ names: event });
+  // };
 
   handleShinyClick = e => {
     this.setState({ isNotShiny: !this.state.isNotShiny });
@@ -114,8 +127,9 @@ class App extends Component {
     const unselected1 = this.state.pokemon === "unselected";
     const isNotShiny1 = this.state.isNotShiny;
     const castro = this.state.names;
-
-    if (unselected1) {
+    // console.log(castro)
+    
+ if (unselected1) {
       return (
         <div className="App">
           <PokeList handleOnClick={this.handleOnClick} />
@@ -125,7 +139,13 @@ class App extends Component {
             handleSelect={this.handleSelect}
             type={this.state.type}
             names={this.state.names}
+            
           />
+          <TypeView
+         numbers={this.props.names}
+          />
+         
+          
         </div>
       );
     } else if (isNotShiny1) {
@@ -144,6 +164,7 @@ class App extends Component {
             names={this.state.names}
             name={this.state.name}
           />
+          
         </div>
       );
     } else {
@@ -162,6 +183,7 @@ class App extends Component {
             names={this.state.names}
             name={this.state.name}
           />
+          
         </div>
       );
     }

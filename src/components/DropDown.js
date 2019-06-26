@@ -1,23 +1,7 @@
 import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
-// import { pokeClasses } from "../pokeClasses";
-// import pokemon from "./App";
-// import BillList from "./BillList";
-// import TypeList from "./TypeList";
 
-const DropDown = ({ type, handleSelect }) => {
-  // const bill = type.type;
-
-  // const typeFilter = pokeClasses.filter(steve => {
-  //   return steve.type.toLowerCase() === bill;
-  // });
-
-  // const typeFilterName = typeFilter.map(value => {
-  //   return value.name;
-  // });
-
-  // console.log("bill " + bill);
-
+const DropDown = ({ handleSelect }) => {
   return (
     <Dropdown>
       <Dropdown.Toggle variant="success" id="dropdown-basic">
@@ -202,4 +186,16 @@ export default DropDown;
 
 // console.log(typeFilterId);
 // console.log(typeFilter);
+// console.log("bill " + bill);
+
+// const bill = type.type;
+
+// const typeFilter = pokeClasses.filter(steve => {
+//   return steve.type.toLowerCase() === bill;
+// });
+
+// const typeFilterName = typeFilter.map(value => {
+//   return value.name;
+// });
+
 // console.log("bill " + bill);
