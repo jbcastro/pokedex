@@ -1,7 +1,15 @@
 import React from "react";
-import DropDown from "./DropDown";
-const TypeCell = ({ typeClass, handleSelect }) => {
-  const { name, id } = typeClass;
-  return <button onclick={() => handleSelect(id)} name={name} />;
-};
+import './styles/TypeView.css'
+
+const TypeCell = ({handleSelect, typeClass})=>{
+  const {id, name}=typeClass;
+  console.log(typeClass)
+  return(
+    <ul 
+    className ="type-cell"
+    id={id}
+    name={name}
+    />
+  )
+}
 export default TypeCell;

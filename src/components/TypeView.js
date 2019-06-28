@@ -1,42 +1,28 @@
 import React from "react";
+import './styles/TypeView.css'
+
+const TypeView = (
+ props)=>{
+
+const names = props.names;
+const listItems = names.map((name)=>
+<li key={name}>
+{name}
+</li>
+)
 
 
-const TypeView = (props) =>{
-  
-  const numbers = props.names;
- 
-  
-  console.log(numbers)
-  
- 
-  return (
+  return(
     <ul>
-
-   
     
+   name:{listItems}
     
     </ul>
   )
+  
 }
 
 
+export default TypeView
 
-export default TypeView;
 
-  // const names = names.map(name=>{
-  //   console.log({name})
-  // })
-  
-// const TypeView =({handleSelect})=>{
-//   const butt = names.map(pokeClass=>{
-//     return(
-//       <ul
-//       key={pokeClass.id}
-      
-//       name={pokeClass.name}
-      
-//       />
-//     )
-//   })
-//   return<section>{butt}</section>
-  

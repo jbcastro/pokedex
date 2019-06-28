@@ -1,5 +1,5 @@
-class PokeTypeList{
-    constructor(data){
-        this.name = data.name
-    }
-}
+// class PokeTypeList{
+//     constructor(data){
+//         this.name = data.name
+//     }
+// }

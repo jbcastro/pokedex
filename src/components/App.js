@@ -5,7 +5,7 @@ import ShinyView from "./ShinyView";
 import Unselectedview from "./UnselectedView";
 import Pokemon from "../Pokemon";
 import Type from "../Type";
-import PokeTypeList from "../PokeTypeList"
+// import PokeTypeList from "../PokeTypeList"
 import TypeView from "./TypeView";
 // import Type2 from "../Type2";
 import DropDown from "./DropDown";
@@ -23,7 +23,7 @@ class App extends Component {
       pokemon: "unselected",
       type: {},
       isNotShiny: true,
-      names: {}
+      names: []
     };
 
     this.handleOnClick = this.handleOnClick.bind(this);
@@ -65,17 +65,40 @@ class App extends Component {
         // var res = apiUrls.substr(1, 33);
         // console.log(res);
 
-        console.log(apiNames);
+        // console.log(apiNames);
         // console.log(apiUrls);
+      // apiUrls.forEach(emotion => emotion.slice(0,1))
+
+      const angie = apiNames.filter(age=>age !== laura)
+      console.log(angie)
+
+      const suze = apiNames.filter(age=>age===angie)
+      console.log(suze)
+
+      // function myFunction(){
+      //   apiUrls.slice(0,8)
+      // }
+
+
+
+
+        // const res = apiUrls.slice(0,8);
+        // console.log(res)
 
         //set state of list of pokemon by type
-        this.setState({ names: apiNames });
+        const roland = Array.from(apiNames);
+        this.setState({ names: roland });
 
         //parses id in pokeClasses since they are strings and
         //I don't feel like changing them all to intergers
         const idParsing = pokeClasses.map(value => {
           return parseInt(value.id);
         });
+
+        
+
+        // this.setState({numberz:roland})
+        // console.log(roland)
         // console.log(idParsing);
 
         // const chief = apiNames.filter(value => {
@@ -142,7 +165,7 @@ class App extends Component {
             
           />
           <TypeView
-         numbers={this.props.names}
+         names={this.state.names}
           />
          
           
@@ -183,6 +206,7 @@ class App extends Component {
             names={this.state.names}
             name={this.state.name}
           />
+
           
         </div>
       );

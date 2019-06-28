@@ -1,0 +1,11 @@
+.type-view {
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 40%;
+    height: 70%;
+    padding: 10px;
+    margin-right: 10px;
+    background-color: #bff9ff;
+}
