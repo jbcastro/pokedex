@@ -23,7 +23,9 @@ class App extends Component {
       pokemon: "unselected",
       type: {},
       isNotShiny: true,
-      names: []
+      names: [],
+      typeName:{}, 
+      soda:{}
     };
 
     this.handleOnClick = this.handleOnClick.bind(this);
@@ -37,10 +39,14 @@ class App extends Component {
       .then(res => res.json())
 
       .then(data => {
+        this.setState({typeName: data.name})
+        
+        
         //sets the type
         const type = new Type(data);
 
         this.setState({ type });
+        
 
         
 
@@ -54,7 +60,7 @@ class App extends Component {
         const laura = pokeClasses.map(value => {
           return value.name.toLowerCase();
         });
-        console.log(laura);
+        // console.log(laura);
 
         //maps the names and urls for pokeAPI
         const mappingFunction = p => p.pokemon.name;
@@ -62,18 +68,47 @@ class App extends Component {
         const apiNames = pokeApiData.map(mappingFunction);
         const apiUrls = pokeApiData.map(mappingFunction2);
 
+        // console.log(apiUrls)
         // var res = apiUrls.substr(1, 33);
         // console.log(res);
 
         // console.log(apiNames);
         // console.log(apiUrls);
-      // apiUrls.forEach(emotion => emotion.slice(0,1))
+
+
+      const orange = apiUrls.map(candle=>candle.slice(34));
+      console.log(orange)
+
+      const pepsi = orange.map(dew=>dew.replace(/[^\d.-]/g, ''))
+      console.log(pepsi)
+
+      const coke = pepsi.map((pepper)=>parseInt(pepper) )
+
+this.setState({soda:coke})
+      console.log(coke);
+
+
+      const pibb = coke.filter (mister => mister < 151);
+      
+      console.log(pibb)
+      // const snow = parseInt(orange);
+      
+
+       
+        
+
+      // const ash = apiUrls.forEach((emotion) => emotion.slice(0,8))
+
+      // const ally = ash.slice(1)
+      // console.log(ash)
+      // console.log(ally)
 
       const angie = apiNames.filter(age=>age !== laura)
-      console.log(angie)
+      // console.log(angie)
+
 
       const suze = apiNames.filter(age=>age===angie)
-      console.log(suze)
+      // console.log(suze)
 
       // function myFunction(){
       //   apiUrls.slice(0,8)
@@ -164,9 +199,10 @@ class App extends Component {
             names={this.state.names}
             
           />
-          <TypeView
-         names={this.state.names}
-          />
+          <TypeView 
+          names={this.state.names}
+          
+           />
          
           
         </div>
@@ -187,6 +223,9 @@ class App extends Component {
             names={this.state.names}
             name={this.state.name}
           />
+          <TypeView
+         names={this.state.names}
+          />
           
         </div>
       );
@@ -205,6 +244,9 @@ class App extends Component {
             type={this.state.type}
             names={this.state.names}
             name={this.state.name}
+          />
+          <TypeView
+         names={this.state.names}
           />
 
           

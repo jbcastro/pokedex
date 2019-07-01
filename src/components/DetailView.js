@@ -9,6 +9,7 @@ const DetailView = ({
 }) => {
   const { name, moves, sprite, type } = pokemon;
   // const { type } = type;
+  
 
   return (
     <section className="detail-view">
