@@ -12,9 +12,9 @@ const ShinyView = ({ pokemon, handleTypeClick, handleShinyClick }) => {
         <h1 className="data-name">Name: {name}</h1>
         <button onClick={() => handleShinyClick()}>Shiny </button>
         {/* <button onClick={() => handleTypeClick(type)}>Type : {type}</button> */}
-
-        <p className="data-char">Move: {moves}</p>
         <p className="data-char">Type: {type}</p>
+
+        <ul className="data-char">Move: {moves}</ul>
       </div>
     </section>
   );

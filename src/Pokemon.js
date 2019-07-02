@@ -7,7 +7,17 @@ class Pokemon {
 
     this.type = data.types[0].type.name;
 
-    this.moves = data.moves[0].move.name;
+
+    const moveApiData = data.moves;
+    // console.log(moveApiData)
+  
+  
+  // console.log(moveList)
+
+
+
+    this.moves = moveApiData;
+    
     this.shiny = data.sprites.front_shiny;
   }
 }

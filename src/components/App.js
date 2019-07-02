@@ -13,7 +13,7 @@ import DropDown from "./DropDown";
 // import TypeList from "./TypeList";
 
 import "./styles/App.css";
-import { pokeClasses } from "../pokeClasses";
+// import { pokeClasses } from "../pokeClasses";
 
 class App extends Component {
   constructor(props) {
@@ -24,8 +24,7 @@ class App extends Component {
       type: {},
       isNotShiny: true,
       names: [],
-      typeName:{}, 
-      soda:{}
+      typeName:[]
     };
 
     this.handleOnClick = this.handleOnClick.bind(this);
@@ -57,9 +56,9 @@ class App extends Component {
 
         //maps the pokemon that I have in the array in order to,
         //in theory, cross reference with the ones from the PokeAPI
-        const laura = pokeClasses.map(value => {
-          return value.name.toLowerCase();
-        });
+        // const laura = pokeClasses.map(value => {
+        //   return value.name.toLowerCase();
+        // });
         // console.log(laura);
 
         //maps the names and urls for pokeAPI
@@ -76,26 +75,46 @@ class App extends Component {
         // console.log(apiUrls);
 
 
-      const orange = apiUrls.map(candle=>candle.slice(34));
-      console.log(orange)
+      const orange = apiUrls.map(result=>result.slice(34));
+      // console.log(orange)
 
-      const pepsi = orange.map(dew=>dew.replace(/[^\d.-]/g, ''))
-      console.log(pepsi)
+      const pepsi = orange.map(result=>result.replace(/[^\d.-]/g, ''))
+      // console.log(pepsi)
 
-      const coke = pepsi.map((pepper)=>parseInt(pepper) )
-
-this.setState({soda:coke})
-      console.log(coke);
+      const coke = pepsi.map((result)=>parseInt(result) )
 
 
-      const pibb = coke.filter (mister => mister < 151);
+//       console.log(coke);
+
+
+      const pibb = coke.filter((result) => result < 151);
       
-      console.log(pibb)
+      // console.log(pibb)
       // const snow = parseInt(orange);
-      
+      const lime = pibb.map(result=>String(result))
+      // console.log(lime)
 
-       
+      const strawberry = lime.map(
+        result=>"https://pokeapi.co/api/v2/pokemon/"+result+"/")
+      // console.log(strawberry)
+        // console.log(pokeApiData)
+      const banana = strawberry.length;
+      // console.log(banana)
+
+      const mango = apiNames.slice(0,banana)
+      // console.log(mango)
+
+      const roland = Array.from(mango);
         
+        
+      this.setState({ names: roland });
+
+    // const kiwi = pokeApiData.map(value=>{
+    //   return value.pokemon.url.toLowerCase() 
+    // })
+    // console.log(kiwi)
+
+
 
       // const ash = apiUrls.forEach((emotion) => emotion.slice(0,8))
 
@@ -103,11 +122,11 @@ this.setState({soda:coke})
       // console.log(ash)
       // console.log(ally)
 
-      const angie = apiNames.filter(age=>age !== laura)
+      // const angie = apiNames.filter(age=>age !== laura)
       // console.log(angie)
 
 
-      const suze = apiNames.filter(age=>age===angie)
+      // const suze = apiNames.filter(age=>age===angie)
       // console.log(suze)
 
       // function myFunction(){
@@ -121,14 +140,13 @@ this.setState({soda:coke})
         // console.log(res)
 
         //set state of list of pokemon by type
-        const roland = Array.from(apiNames);
-        this.setState({ names: roland });
+     
 
         //parses id in pokeClasses since they are strings and
         //I don't feel like changing them all to intergers
-        const idParsing = pokeClasses.map(value => {
-          return parseInt(value.id);
-        });
+        // const idParsing = pokeClasses.map(value => {
+        //   return parseInt(value.id);
+        // });
 
         
 
@@ -176,7 +194,7 @@ this.setState({soda:coke})
         const pokemon = new Pokemon(data);
 
         this.setState({ pokemon });
-        console.log(pokemon);
+        // console.log(pokemon);
       })
       .catch(err => console.log(err));
   };
@@ -184,7 +202,7 @@ this.setState({soda:coke})
   render() {
     const unselected1 = this.state.pokemon === "unselected";
     const isNotShiny1 = this.state.isNotShiny;
-    const castro = this.state.names;
+    // const castro = this.state.names;
     // console.log(castro)
     
  if (unselected1) {
@@ -201,6 +219,7 @@ this.setState({soda:coke})
           />
           <TypeView 
           names={this.state.names}
+          typeName={this.state.typeName}
           
            />
          

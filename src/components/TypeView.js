@@ -7,26 +7,28 @@ const TypeView = (
 const names = props.names;
 
 
-// const typeNamez = props.typeName;
+const typeName = props.typeName;
 // const typeName = typeNamez
 // console.log(typeName)
 
 const listItems = names.map((name)=>
 <li key={name}>
 {name}
+
 </li>
 )
 
 
+
   return(
+    
     <section className="type-view">
+    type: {typeName}
     
-    <ul>
-  
     
-   name:{listItems}
+   {listItems}
+   
     
-    </ul>
     </section>
   )
   
