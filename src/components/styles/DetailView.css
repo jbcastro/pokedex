@@ -37,3 +37,16 @@
 .data-char {
   font-size: 10px;
 }
+ul.plain {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.li {
+  text-decoration:none;
+}
+
+button{
+  color:red
+}

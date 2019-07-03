@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PokeList from "./PokeList";
 import DetailView from "./DetailView";
-import ShinyView from "./ShinyView";
+// import ShinyView from "./ShinyView";
 import Unselectedview from "./UnselectedView";
 import Pokemon from "../Pokemon";
 import Type from "../Type";
@@ -62,10 +62,10 @@ class App extends Component {
         // console.log(laura);
 
         //maps the names and urls for pokeAPI
-        const mappingFunction = p => p.pokemon.name;
-        const mappingFunction2 = p => p.pokemon.url;
-        const apiNames = pokeApiData.map(mappingFunction);
-        const apiUrls = pokeApiData.map(mappingFunction2);
+        const mapNameData = p => p.pokemon.name;
+        const mapApiData = p => p.pokemon.url;
+        const apiNames = pokeApiData.map(mapNameData);
+        const apiUrls = pokeApiData.map(mapApiData);
 
         // console.log(apiUrls)
         // var res = apiUrls.substr(1, 33);
@@ -75,106 +75,41 @@ class App extends Component {
         // console.log(apiUrls);
 
 
-      const orange = apiUrls.map(result=>result.slice(34));
-      // console.log(orange)
+      const sliceApiUrls = apiUrls.map(result=>result.slice(34));
+      // console.log(sliceApiUrls)
 
-      const pepsi = orange.map(result=>result.replace(/[^\d.-]/g, ''))
-      // console.log(pepsi)
+      const replaceSlicedApi = sliceApiUrls.map(result=>result.replace(/[^\d.-]/g, ''))
+      // console.log(replaceSlicedApi)
 
-      const coke = pepsi.map((result)=>parseInt(result) )
-
-
-//       console.log(coke);
+      const parseIntUrls = replaceSlicedApi.map((result)=>parseInt(result) )
 
 
-      const pibb = coke.filter((result) => result < 151);
+//       console.log(parseIntUrls);
+
+
+      const limitParseInts = parseIntUrls.filter((result) => result < 151);
       
-      // console.log(pibb)
-      // const snow = parseInt(orange);
-      const lime = pibb.map(result=>String(result))
-      // console.log(lime)
+      // console.log(limitParseInts)
+      // const snow = parseInt(sliceApiUrls);
+      const stringinfyInts = limitParseInts.map(result=>String(result))
+      // console.log(stringinfyInts)
 
-      const strawberry = lime.map(
+      const reUrlInts = stringinfyInts.map(
         result=>"https://pokeapi.co/api/v2/pokemon/"+result+"/")
-      // console.log(strawberry)
+      // console.log(reUrlInts)
         // console.log(pokeApiData)
-      const banana = strawberry.length;
+      const banana = reUrlInts.length;
       // console.log(banana)
 
-      const mango = apiNames.slice(0,banana)
-      // console.log(mango)
+      const limitNamesToGen1 = apiNames.slice(0,banana)
+      // console.log(limitNamesToGen1)
 
-      const roland = Array.from(mango);
+      const gen1NamesOnly = Array.from(limitNamesToGen1);
         
         
-      this.setState({ names: roland });
+      this.setState({ names: gen1NamesOnly });
 
-    // const kiwi = pokeApiData.map(value=>{
-    //   return value.pokemon.url.toLowerCase() 
-    // })
-    // console.log(kiwi)
-
-
-
-      // const ash = apiUrls.forEach((emotion) => emotion.slice(0,8))
-
-      // const ally = ash.slice(1)
-      // console.log(ash)
-      // console.log(ally)
-
-      // const angie = apiNames.filter(age=>age !== laura)
-      // console.log(angie)
-
-
-      // const suze = apiNames.filter(age=>age===angie)
-      // console.log(suze)
-
-      // function myFunction(){
-      //   apiUrls.slice(0,8)
-      // }
-
-
-
-
-        // const res = apiUrls.slice(0,8);
-        // console.log(res)
-
-        //set state of list of pokemon by type
-     
-
-        //parses id in pokeClasses since they are strings and
-        //I don't feel like changing them all to intergers
-        // const idParsing = pokeClasses.map(value => {
-        //   return parseInt(value.id);
-        // });
-
-        
-
-        // this.setState({numberz:roland})
-        // console.log(roland)
-        // console.log(idParsing);
-
-        // const chief = apiNames.filter(value => {
-        //   return value === laura;
-        // });
-        // console.log(chief);
-
-        // this.setState({ liz: chief });
-
-        // const ryan = lily.filter(value => {
-        //   return value.name.toLowerCase() === laura;
-        // });
-
-        // console.log(ryan);
-
-        // if (apiNames === laura) {
-        //   console.log("cool");
-        // }
-
-        // const mappingFunction3 = p => p.pokeClasses.id;
-
-        // if (apiUrls == "https://pokeapi.co/api/v2/pokemon/85/") {
-        // }
+    
       })
 
       .catch(err => console.log(err));
@@ -185,7 +120,7 @@ class App extends Component {
   // };
 
   handleShinyClick = e => {
-    this.setState({ isNotShiny: !this.state.isNotShiny });
+    this.setState(state=>({ isNotShiny: !this.state.isNotShiny }));
   };
   handleOnClick = id => {
     fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
@@ -194,6 +129,7 @@ class App extends Component {
         const pokemon = new Pokemon(data);
 
         this.setState({ pokemon });
+        
         // console.log(pokemon);
       })
       .catch(err => console.log(err));
@@ -201,7 +137,7 @@ class App extends Component {
 
   render() {
     const unselected1 = this.state.pokemon === "unselected";
-    const isNotShiny1 = this.state.isNotShiny;
+    // const isNotShiny1 = this.state.isNotShiny;
     // const castro = this.state.names;
     // console.log(castro)
     
@@ -226,7 +162,32 @@ class App extends Component {
           
         </div>
       );
-    } else if (isNotShiny1) {
+    } else{
+    
+    // else if (isNotShiny1) {
+    //   return (
+    //     <div className="App">
+    //       <PokeList handleOnClick={this.handleOnClick} />
+    //       <DetailView
+    //         pokemon={this.state.pokemon}
+    //         handleTypeClick={this.handleTypeClick}
+    //         handleShinyClick={this.handleShinyClick}
+    //       />
+    //       <DropDown
+    //         handleTypeFilter={this.handleTypeFilter}
+    //         handleSelect={this.handleSelect}
+    //         type={this.state.type}
+    //         names={this.state.names}
+    //         name={this.state.name}
+    //       />
+    //       <TypeView
+    //      names={this.state.names}
+    //       />
+          
+    //     </div>
+    //   );
+    // }
+     
       return (
         <div className="App">
           <PokeList handleOnClick={this.handleOnClick} />
@@ -234,28 +195,8 @@ class App extends Component {
             pokemon={this.state.pokemon}
             handleTypeClick={this.handleTypeClick}
             handleShinyClick={this.handleShinyClick}
-          />
-          <DropDown
-            handleTypeFilter={this.handleTypeFilter}
-            handleSelect={this.handleSelect}
-            type={this.state.type}
-            names={this.state.names}
-            name={this.state.name}
-          />
-          <TypeView
-         names={this.state.names}
-          />
-          
-        </div>
-      );
-    } else {
-      return (
-        <div className="App">
-          <PokeList handleOnClick={this.handleOnClick} />
-          <ShinyView
-            pokemon={this.state.pokemon}
-            handleTypeClick={this.handleTypeClick}
-            handleShinyClick={this.handleShinyClick}
+            isNotShiny={this.state.isNotShiny}
+            pokemonSelected={this.state.pokemonSelected}
           />
           <DropDown
             handleTypeFilter={this.handleTypeFilter}
@@ -272,6 +213,7 @@ class App extends Component {
         </div>
       );
     }
+    
   }
 }
 
@@ -370,3 +312,71 @@ export default App;
 //   // this.setState({ name: typeFilterName });
 //   console.log(this.state.names);
 // };
+
+
+// const kiwi = pokeApiData.map(value=>{
+    //   return value.pokemon.url.toLowerCase() 
+    // })
+    // console.log(kiwi)
+
+
+
+      // const ash = apiUrls.forEach((emotion) => emotion.slice(0,8))
+
+      // const ally = ash.slice(1)
+      // console.log(ash)
+      // console.log(ally)
+
+      // const angie = apiNames.filter(age=>age !== laura)
+      // console.log(angie)
+
+
+      // const suze = apiNames.filter(age=>age===angie)
+      // console.log(suze)
+
+      // function myFunction(){
+      //   apiUrls.slice(0,8)
+      // }
+
+
+
+
+        // const res = apiUrls.slice(0,8);
+        // console.log(res)
+
+        //set state of list of pokemon by type
+     
+
+        //parses id in pokeClasses since they are strings and
+        //I don't feel like changing them all to intergers
+        // const idParsing = pokeClasses.map(value => {
+        //   return parseInt(value.id);
+        // });
+
+        
+
+        // this.setState({numberz:roland})
+        // console.log(roland)
+        // console.log(idParsing);
+
+        // const chief = apiNames.filter(value => {
+        //   return value === laura;
+        // });
+        // console.log(chief);
+
+        // this.setState({ liz: chief });
+
+        // const ryan = lily.filter(value => {
+        //   return value.name.toLowerCase() === laura;
+        // });
+
+        // console.log(ryan);
+
+        // if (apiNames === laura) {
+        //   console.log("cool");
+        // }
+
+        // const mappingFunction3 = p => p.pokeClasses.id;
+
+        // if (apiUrls == "https://pokeapi.co/api/v2/pokemon/85/") {
+        // }

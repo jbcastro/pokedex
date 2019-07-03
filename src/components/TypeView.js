@@ -11,11 +11,15 @@ const typeName = props.typeName;
 // const typeName = typeNamez
 // console.log(typeName)
 
-const listItems = names.map((name)=>
+const listItems = (
+  <ul className="plain">{
+  names.map((name)=>
 <li key={name}>
 {name}
 
 </li>
+)}
+</ul>
 )
 
 
