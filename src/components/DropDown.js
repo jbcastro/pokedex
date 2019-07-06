@@ -11,7 +11,7 @@ const DropDown = ({ handleSelect }) => {
       <Dropdown.Menu>
         <Dropdown.Item
           onClick={() => {
-            handleSelect(1);
+            handleSelect("normal");
           }}
         >
           Normal
@@ -19,119 +19,119 @@ const DropDown = ({ handleSelect }) => {
 
         <Dropdown.Item
           onClick={() => {
-            handleSelect(2);
+            handleSelect("fighting");
           }}
         >
           Fighting
         </Dropdown.Item>
         <Dropdown.Item
           onClick={() => {
-            handleSelect(3);
+            handleSelect("flying");
           }}
         >
           Flying
         </Dropdown.Item>
         <Dropdown.Item
           onClick={() => {
-            handleSelect(4);
+            handleSelect("poison");
           }}
         >
           Poison
         </Dropdown.Item>
         <Dropdown.Item
           onClick={() => {
-            handleSelect(5);
+            handleSelect("ground");
           }}
         >
           Ground
         </Dropdown.Item>
         <Dropdown.Item
           onClick={() => {
-            handleSelect(6);
+            handleSelect("rock");
           }}
         >
           Rock
         </Dropdown.Item>
         <Dropdown.Item
           onClick={() => {
-            handleSelect(7);
+            handleSelect("bug");
           }}
         >
           Bug
         </Dropdown.Item>
         <Dropdown.Item
           onClick={() => {
-            handleSelect(8);
+            handleSelect("ghost");
           }}
         >
           Ghost
         </Dropdown.Item>
         <Dropdown.Item
           onClick={() => {
-            handleSelect(9);
+            handleSelect("steel");
           }}
         >
           Steel
         </Dropdown.Item>
         <Dropdown.Item
           onClick={() => {
-            handleSelect(10);
+            handleSelect("fire");
           }}
         >
           Fire
         </Dropdown.Item>
         <Dropdown.Item
           onClick={() => {
-            handleSelect(11);
+            handleSelect("water");
           }}
         >
           Water
         </Dropdown.Item>
         <Dropdown.Item
           onClick={() => {
-            handleSelect(12);
+            handleSelect("grass");
           }}
         >
           Grass
         </Dropdown.Item>
         <Dropdown.Item
           onClick={() => {
-            handleSelect(13);
+            handleSelect("electric");
           }}
         >
           Electric
         </Dropdown.Item>
         <Dropdown.Item
           onClick={() => {
-            handleSelect(14);
+            handleSelect("psychic");
           }}
         >
           Psychic
         </Dropdown.Item>
         <Dropdown.Item
           onClick={() => {
-            handleSelect(15);
+            handleSelect("ice");
           }}
         >
           Ice
         </Dropdown.Item>
         <Dropdown.Item
           onClick={() => {
-            handleSelect(16);
+            handleSelect("dragon");
           }}
         >
           Dragon
         </Dropdown.Item>
         <Dropdown.Item
           onClick={() => {
-            handleSelect(17);
+            handleSelect("dark");
           }}
         >
           Dark
         </Dropdown.Item>
         <Dropdown.Item
           onClick={() => {
-            handleSelect(18);
+            handleSelect("fairy");
           }}
         >
           Fairy
