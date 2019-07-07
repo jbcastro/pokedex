@@ -7,6 +7,7 @@ const TypeView = props => {
   const names = props.names;
   const intUrls = props.intUrls;
   const typeName = props.typeName;
+  const dubDamage0 = props.doubleDamageFrom;
   // const typeName = typeNamez
   // console.log(typeName)
   const imgLinks = (
@@ -31,6 +32,7 @@ const TypeView = props => {
   return (
     <section className="type-view">
       type: {typeName}
+      weak against : {dubDamage0}
       {typeListItems}
       {imgLinks}
     </section>

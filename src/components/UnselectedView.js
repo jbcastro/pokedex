@@ -9,7 +9,7 @@ const UnselectedView = ({ pokemon }) => {
     <section className="detail-view">
       <img src={ash} className="sprite-image" alt="ash" />
       <div className="data-wrapper">
-        <h1 className="data-name">Choose a mon!</h1>
+        <h3 className="data-name">Not just the pokemon, but the pokewomon and pokechildren too!</h3>
       </div>
     </section>
   );

@@ -46,8 +46,8 @@ class App extends Component {
         //sets the type
         const type = new Type(data);
 
-        const bobRoss = data.damage_relations.double_damage_from[0].name;
-        this.setState({ doubleDamageFrom: bobRoss });
+        const dubDamageFrom0 = data.damage_relations.double_damage_from[0].name;
+        this.setState({ doubleDamageFrom: dubDamageFrom0 });
         this.setState({ type });
 
         //gets all the info for each pokemon in that type,
@@ -166,6 +166,8 @@ class App extends Component {
             names={this.state.names}
             typeName={this.state.typeName}
             intUrls={this.state.intUrls}
+                        doubleDamageFrom={this.state.doubleDamageFrom}
+
           />
         </div>
       );
@@ -217,6 +219,7 @@ class App extends Component {
             names={this.state.names}
             typeName={this.state.typeName}
             intUrls={this.state.intUrls}
+            doubleDamageFrom={this.state.doubleDamageFrom}
           />
         </div>
       );
