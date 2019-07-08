@@ -27,7 +27,8 @@ class App extends Component {
       typeName: [],
       intUrls: [],
       type2Exist: true,
-      doubleDamageFrom: []
+      doubleDamageFrom: [],
+      reUrlInts: []
     };
 
     this.handleOnClick = this.handleOnClick.bind(this);
@@ -94,19 +95,20 @@ class App extends Component {
         const stringinfyInts = limitParseInts.map(result => String(result));
         // console.log(stringinfyInts)
 
-        const intPics = stringinfyInts.map(result => result + ".png");
-        this.setState({ intUrls: intPics });
-
         const reUrlInts = stringinfyInts.map(
           result => "https://pokeapi.co/api/v2/pokemon/" + result + "/"
         );
-        // console.log(reUrlInts)
+        // console.log(reUrlInts);
+        this.setState({ reUrlInts: reUrlInts });
         // console.log(pokeApiData)
         const urlIntLength = reUrlInts.length;
         // console.log(urlIntLength)
 
         const limitNamesToGen1 = apiNames.slice(0, urlIntLength);
-        // console.log(limitNamesToGen1)
+        // console.log(limitNamesToGen1);
+
+        const intPics = stringinfyInts.map(result => result + ".png");
+        this.setState({ intUrls: intPics });
 
         const gen1NamesOnly = Array.from(limitNamesToGen1);
 
@@ -166,8 +168,8 @@ class App extends Component {
             names={this.state.names}
             typeName={this.state.typeName}
             intUrls={this.state.intUrls}
-                        doubleDamageFrom={this.state.doubleDamageFrom}
-
+            doubleDamageFrom={this.state.doubleDamageFrom}
+            reUrlInts={this.state.reUrlInts}
           />
         </div>
       );
@@ -220,6 +222,7 @@ class App extends Component {
             typeName={this.state.typeName}
             intUrls={this.state.intUrls}
             doubleDamageFrom={this.state.doubleDamageFrom}
+            reUrlInts={this.state.reUrlInts}
           />
         </div>
       );

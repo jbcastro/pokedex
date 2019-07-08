@@ -41,12 +41,13 @@ ul.plain {
   list-style-type: none;
   margin: 0;
   padding: 0;
+  background-image: ();
 }
 
 .li {
-  text-decoration:none;
+  text-decoration: none;
 }
 
-button{
-  color:red
+button {
+  color: red;
 }
