@@ -3,41 +3,51 @@ import "./styles/TypeView.css";
 import { pokeClasses } from "../pokeClasses";
 import bulbasaur from "../assets/bulbasaur.png";
 import { arrayExpression } from "@babel/types";
-
-const TypeView = props => {
-  const names = props.names;
-  const intUrls = props.intUrls;
-  const typeName = props.typeName;
-  const dubDamage0 = props.doubleDamageFrom;
-  const reUrlInts = props.reUrlInts;
-  const butt =
-    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/";
-  const steve = intUrls.map(result => String(result));
-  // console.log(steve);
-  // const buttass = intUrls.map(
-  //   result =>
-  //     "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" +
-  //     result
-  // );
-  const assbutt = steve.map(result => butt + result);
-
-  // const typeListItems = names.map(name => ({ name }));
-  const imgLinks = assbutt.map(result => <li key={result}>{result}</li>);
+const TypeView = ({ type }) => {
+  const { typeName, doubleDamageFrom } = type;
 
   return (
     <section className="type-view">
       type: {typeName}
-      weak against : {dubDamage0}
-      <ul>
-        {names.map(item => (
-          <li key={item}>{item}</li>
-        ))}
-      </ul>
+      weak against : {doubleDamageFrom}
     </section>
   );
 };
 
 export default TypeView;
+
+// const TypeView = props => {
+//   const names = props.names;
+//   const intUrls = props.intUrls;
+//   const typeName = props.typeName;
+//   const dubDamage0 = props.doubleDamageFrom;
+//   const reUrlInts = props.reUrlInts;
+//   const butt =
+//     "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/";
+//   const steve = intUrls.map(result => String(result));
+//   // console.log(steve);
+//   // const buttass = intUrls.map(
+//   //   result =>
+//   //     "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" +
+//   //     result
+//   // );
+//   const assbutt = steve.map(result => butt + result);
+
+//   // const typeListItems = names.map(name => ({ name }));
+//   const imgLinks = assbutt.map(result => <li key={result}>{result}</li>);
+
+//   return (
+//     <section className="type-view">
+//       type: {typeName}
+//       weak against : {dubDamage0}
+//       <ul>
+//         {names.map(item => (
+//           <li key={item}>{item}</li>
+//         ))}
+//       </ul>
+//     </section>
+//   );
+// };
 
 // const buttass = assbutt.forEach(result => fetch(result));
 // console.log(assbutt);

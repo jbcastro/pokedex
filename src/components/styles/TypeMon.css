@@ -1,5 +1,4 @@
-.type-view {
-  display: top;
+.type-mon {
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
@@ -9,11 +8,5 @@
   margin-right: 10px;
   background-color: #bff9ff;
   box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
-}
-
-.li {
-  float: left;
-}
-.ul {
-  float: left;
+  clear: both;
 }

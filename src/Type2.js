@@ -1,9 +1,10 @@
-// class Type2 {
-//   constructor(data) {
-//     {
-//       this.butt = data.types[1].type.name;
-//     }
-//   }
-// }
+class Type2 {
+  constructor(props) {
+    {
+      this.intPics = props.intPics;
+      console.log(this.intPics);
+    }
+  }
+}
 
-// export default Type2;
+export default Type2;

@@ -7,6 +7,7 @@ import Pokemon from "../Pokemon";
 import Type from "../Type";
 // import PokeTypeList from "../PokeTypeList"
 import TypeView from "./TypeView";
+import TypeMon from "./TypeMon";
 // import Type2 from "../Type2";
 import DropDown from "./DropDown";
 // import BillList from "./BillList";
@@ -25,10 +26,11 @@ class App extends Component {
       isNotShiny: true,
       names: [],
       typeName: [],
-      intUrls: [],
+      intPics: [],
       type2Exist: true,
       doubleDamageFrom: [],
-      reUrlInts: []
+      reUrlInts: [],
+      namesAndPics: {}
     };
 
     this.handleOnClick = this.handleOnClick.bind(this);
@@ -42,19 +44,17 @@ class App extends Component {
       .then(res => res.json())
 
       .then(data => {
-        this.setState({ typeName: data.name });
-
         //sets the type
         const type = new Type(data);
 
-        const dubDamageFrom0 = data.damage_relations.double_damage_from[0].name;
-        this.setState({ doubleDamageFrom: dubDamageFrom0 });
+        // const dubDamageFrom0 = data.damage_relations.double_damage_from[0].name;
+        // this.setState({ doubleDamageFrom: dubDamageFrom0 });
         this.setState({ type });
 
         //gets all the info for each pokemon in that type,
         //reading the /v2/type/X/pokeApiData
         const pokeApiData = data.pokemon;
-        // console.log(pokeApiData)
+        // console.log(pokeApiData);
 
         //maps the pokemon that I have in the array in order to,
         //in theory, cross reference with the ones from the PokeAPI
@@ -82,7 +82,7 @@ class App extends Component {
         const replaceSlicedApi = sliceApiUrls.map(result =>
           result.replace(/[^\d.-]/g, "")
         );
-        // console.log(replaceSlicedApi)
+        // console.log(replaceSlicedApi);
 
         const parseIntUrls = replaceSlicedApi.map(result => parseInt(result));
 
@@ -90,7 +90,7 @@ class App extends Component {
 
         const limitParseInts = parseIntUrls.filter(result => result < 151);
 
-        // console.log(limitParseInts)
+        // console.log(limitParseInts);
         // const snow = parseInt(sliceApiUrls);
         const stringinfyInts = limitParseInts.map(result => String(result));
         // console.log(stringinfyInts)
@@ -101,18 +101,42 @@ class App extends Component {
         // console.log(reUrlInts);
         this.setState({ reUrlInts: reUrlInts });
         // console.log(pokeApiData)
+
         const urlIntLength = reUrlInts.length;
         // console.log(urlIntLength)
 
         const limitNamesToGen1 = apiNames.slice(0, urlIntLength);
-        // console.log(limitNamesToGen1);
+        console.log(limitNamesToGen1);
 
-        const intPics = stringinfyInts.map(result => result + ".png");
-        this.setState({ intUrls: intPics });
+        const intPics = stringinfyInts.map(
+          result =>
+            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" +
+            result +
+            ".png"
+        );
+        console.log(intPics);
+
+        const jake = Array.from(intPics.keys());
+        console.log(jake);
+
+        const chambers = jake.map(result => "id:" + result);
+        console.log(chambers);
+
+        this.setState({ intPics: intPics });
 
         const gen1NamesOnly = Array.from(limitNamesToGen1);
+        console.log(gen1NamesOnly);
 
         this.setState({ names: gen1NamesOnly });
+        const dogg = { intPics, gen1NamesOnly };
+        console.log(dogg);
+
+        const bloc = Array.from(dogg);
+        console.log(bloc);
+        // this.setState({ namesAndPics: dogg });
+
+        const map = new Map(gen1NamesOnly, intPics);
+        console.log(map);
       })
 
       .catch(err => console.log(err));
@@ -165,39 +189,20 @@ class App extends Component {
             names={this.state.names}
           />
           <TypeView
-            names={this.state.names}
-            typeName={this.state.typeName}
-            intUrls={this.state.intUrls}
+            // names={this.state.names}
+            // typeName={this.state.typeName}
+            // intUrls={this.state.intUrls}
             doubleDamageFrom={this.state.doubleDamageFrom}
-            reUrlInts={this.state.reUrlInts}
+            // reUrlInts={this.state.reUrlInts}
+            type={this.state.type}
+            names={this.state.names}
+            intPics={this.state.intPics}
+            // type2={this.state.intPics}
           />
+          <TypeMon names={this.state.names} intPics={this.state.intPics} />
         </div>
       );
     } else {
-      // else if (isNotShiny1) {
-      //   return (
-      //     <div className="App">
-      //       <PokeList handleOnClick={this.handleOnClick} />
-      //       <DetailView
-      //         pokemon={this.state.pokemon}
-      //         handleTypeClick={this.handleTypeClick}
-      //         handleShinyClick={this.handleShinyClick}
-      //       />
-      //       <DropDown
-      //         handleTypeFilter={this.handleTypeFilter}
-      //         handleSelect={this.handleSelect}
-      //         type={this.state.type}
-      //         names={this.state.names}
-      //         name={this.state.name}
-      //       />
-      //       <TypeView
-      //      names={this.state.names}
-      //       />
-
-      //     </div>
-      //   );
-      // }
-
       return (
         <div className="App">
           <PokeList handleOnClick={this.handleOnClick} />
