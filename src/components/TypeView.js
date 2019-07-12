@@ -4,12 +4,26 @@ import { pokeClasses } from "../pokeClasses";
 import bulbasaur from "../assets/bulbasaur.png";
 import { arrayExpression } from "@babel/types";
 const TypeView = ({ type }) => {
-  const { typeName, doubleDamageFrom } = type;
+  const { typeName, doubleDamageFrom, mons } = type;
 
+  // console.log(mons);
+  const scott = mons.map(result => console.log(result));
   return (
     <section className="type-view">
       type: {typeName}
       weak against : {doubleDamageFrom}
+      <button
+        onClick={() => {
+          mons.map(result => <li key={result.pokemon.name} />);
+        }}
+      />
+      {/* <ul>
+        <li>
+          {mons.map(item => (
+            <li key={item.pokemon.name}>{item.pokemon.name}</li>
+          ))}
+        </li>
+      </ul> */}
     </section>
   );
 };

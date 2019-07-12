@@ -106,7 +106,7 @@ class App extends Component {
         // console.log(urlIntLength)
 
         const limitNamesToGen1 = apiNames.slice(0, urlIntLength);
-        console.log(limitNamesToGen1);
+        // console.log(limitNamesToGen1);
 
         const intPics = stringinfyInts.map(
           result =>
@@ -114,29 +114,29 @@ class App extends Component {
             result +
             ".png"
         );
-        console.log(intPics);
+        // console.log(intPics);
 
         const jake = Array.from(intPics.keys());
-        console.log(jake);
+        // console.log(jake);
 
         const chambers = jake.map(result => "id:" + result);
-        console.log(chambers);
+        // console.log(chambers);
 
         this.setState({ intPics: intPics });
 
         const gen1NamesOnly = Array.from(limitNamesToGen1);
-        console.log(gen1NamesOnly);
+        // console.log(gen1NamesOnly);
 
         this.setState({ names: gen1NamesOnly });
         const dogg = { intPics, gen1NamesOnly };
-        console.log(dogg);
+        // console.log(dogg);
 
         const bloc = Array.from(dogg);
-        console.log(bloc);
+        // console.log(bloc);
         // this.setState({ namesAndPics: dogg });
 
         const map = new Map(gen1NamesOnly, intPics);
-        console.log(map);
+        // console.log(map);
       })
 
       .catch(err => console.log(err));
