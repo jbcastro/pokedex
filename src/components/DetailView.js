@@ -1,6 +1,7 @@
 import React from "react";
 import "./styles/DetailView.css";
 import Dropdown from "react-bootstrap/Dropdown";
+import "./styles/TypeMon.css";
 
 const DetailView = ({
   pokemon,
@@ -70,12 +71,12 @@ const DetailView = ({
           <h1 />
         )}
 
-        <h1 className="data-name">Name: {name}</h1>
+        <h1 className="data-name">{name}</h1>
         <button onClick={() => handleShinyClick()}>Shiny </button>
         {/* <button onClick={() => handleTypeClick(type)}>Type : {type}</button> */}
         {/* <p className="data-char">Type: {type}</p> */}
         <Dropdown>
-          <Dropdown.Toggle variant="success" id="dropdown-basic">
+          <Dropdown.Toggle variant="success" id="type-mon">
             moves
           </Dropdown.Toggle>
           <Dropdown.Menu>

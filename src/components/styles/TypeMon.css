@@ -1,12 +1,4 @@
 .type-mon {
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
-  width: 40%;
-  height: 10%;
-  padding: 10px;
-  margin-right: 10px;
-  background-color: #bff9ff;
-  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
-  clear: both;
+  overflow: scroll;
+  max-height: 10px;
 }

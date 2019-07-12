@@ -1,20 +1,22 @@
 import React from "react";
-import "./styles/TypeMon.css";
+import "./styles/PokeList.css";
 
 const TypeMon = props => {
   const intPics = props.intPics;
   // const intPics = intPics2.map(result => fetch(result));
   const names = props.names;
 
-  const trap = names.map((str, idx) => str + intPics[idx]);
-  console.log(trap);
+  // const trap = names.map(
+  //   (str, idx) => str.toString() + intPics[idx].toString()
+  // );
+  // console.log(trap);
   return (
-    <section className="type-mon">
+    <section className="poke-list">
       <ul>
-        {trap.map(result => (
-          <li key={result}>
-            {names}
-            <img src={intPics} />
+        {names.map((str, idx) => (
+          <li key={str}>
+            {str}
+            <img src={intPics[idx]} alt={str} />
           </li>
         ))}
       </ul>

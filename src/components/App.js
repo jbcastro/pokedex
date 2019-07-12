@@ -220,15 +220,19 @@ class App extends Component {
             handleSelect={this.handleSelect}
             type={this.state.type}
             names={this.state.names}
-            name={this.state.name}
           />
           <TypeView
-            names={this.state.names}
-            typeName={this.state.typeName}
-            intUrls={this.state.intUrls}
+            // names={this.state.names}
+            // typeName={this.state.typeName}
+            // intUrls={this.state.intUrls}
             doubleDamageFrom={this.state.doubleDamageFrom}
-            reUrlInts={this.state.reUrlInts}
+            // reUrlInts={this.state.reUrlInts}
+            type={this.state.type}
+            names={this.state.names}
+            intPics={this.state.intPics}
+            // type2={this.state.intPics}
           />
+          <TypeMon names={this.state.names} intPics={this.state.intPics} />
         </div>
       );
     }
