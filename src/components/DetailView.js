@@ -10,7 +10,8 @@ const DetailView = ({
   handleTypeFitlering,
   isNotShiny,
   handleSelect,
-  type2Exist
+  type2Exist,
+  handleMoveClick
 }) => {
   const { name, moves, sprite, type, shiny, type2 } = pokemon;
   // const { type } = type;
@@ -33,19 +34,37 @@ const DetailView = ({
   // console.log(doesType2Exist);
   // console.log(type2);
 
+  // const moveListUrls = (
+  //   <ul>
+  //     {" "}
+  //     {moves.map(result => (
+  //       <li key={result.move.url}>{result.move.url}</li>
+  //     ))}
+  //   </ul>
+  // );
+  const moveListUrls = moves.map(result => result.move.url);
+  const moveListSlice = moveListUrls.map(result => result.slice(31));
+  const replacedSlicedMove = moveListSlice.map(result =>
+    result.replace(/[^\d.-]/g, "")
+  );
+  const parseIntMove = replacedSlicedMove.map(result => parseInt(result));
+  console.log(parseIntMove);
+  // const moveListNames = (
+  //   <ul className="plain">
+  //     {" "}
+  //     {moves.map(result => (
+  //       <li key={result.move.name}>{result.move.name}</li>
+  //     ))}
+  //   </ul>
+  // );
+
   const moveListNames = (
     <ul className="plain">
-      {" "}
-      {moves.map(result => (
-        <li key={result.move.name}>{result.move.name}</li>
-      ))}
-    </ul>
-  );
-  const moveListUrls = (
-    <ul>
-      {" "}
-      {moves.map(result => (
-        <li key={result.move.url}>{result.move.url}</li>
+      {moves.map((str, idx) => (
+        <li key={str}>
+          {str}
+          {parseIntMove[idx]}
+        </li>
       ))}
     </ul>
   );

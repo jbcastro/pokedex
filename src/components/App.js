@@ -12,6 +12,7 @@ import TypeMon from "./TypeMon";
 import DropDown from "./DropDown";
 // import BillList from "./BillList";
 // import TypeList from "./TypeList";
+import Moves from "../Moves";
 
 import "./styles/App.css";
 // import { pokeClasses } from "../pokeClasses";
@@ -30,13 +31,15 @@ class App extends Component {
       type2Exist: true,
       doubleDamageFrom: [],
       reUrlInts: [],
-      namesAndPics: {}
+      namesAndPics: {},
+      moves: {}
     };
 
     this.handleOnClick = this.handleOnClick.bind(this);
     // this.handleTypeFilter = this.handleTypeFilter.bind(this);
     this.handleShinyClick = this.handleShinyClick.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
+    this.handleMoveClick = this.handleMoveClick.bind(this);
   }
   //handles type select from dropdown
   handleSelect = event => {
@@ -170,6 +173,15 @@ class App extends Component {
       })
       .catch(err => console.log(err));
   };
+  handleMoveClick = id => {
+    fetch(`https://pokeapi.co/api/v2/move/${id}`)
+      .then(res => res.json())
+      .then(data => {
+        const moves = new Moves(data);
+        this.setState({ moves });
+      })
+      .catch(err => console.log(err));
+  };
 
   render() {
     const unselected1 = this.state.pokemon === "unselected";
@@ -214,6 +226,7 @@ class App extends Component {
             pokemonSelected={this.state.pokemonSelected}
             handleSelect={this.handleSelect}
             type2Exist={this.state.type2Exist}
+            handleMoveClick={this.handleMoveClick}
           />
           <DropDown
             handleTypeFilter={this.handleTypeFilter}

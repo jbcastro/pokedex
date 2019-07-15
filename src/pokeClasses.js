@@ -11,7 +11,7 @@ export const pokeClasses = [
     type: "grass",
     type2: "poison",
     name: "bulbasaur",
-    image: "1.png"
+    image: "bulbasaur.png"
   },
   {
     id: "2",
