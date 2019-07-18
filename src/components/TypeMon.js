@@ -10,10 +10,14 @@ const TypeMon = props => {
   const handleOnClick = props.handleOnClick;
 
   const listItems = names.map((str, idx) => (
-    <button onClick={() => handleOnClick(parseInts[idx])} className="type-cell">
-      <li key={parseInts[idx]}>
+    <button
+      key={idx}
+      onClick={() => handleOnClick(parseInts[idx])}
+      className="type-cell"
+    >
+      <li>
         {str}
-        <img src={intPics[idx]} />
+        <img src={intPics[idx]} alt={str} />
       </li>
     </button>
   ));
