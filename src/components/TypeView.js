@@ -1,10 +1,7 @@
 import React from "react";
 import "./styles/TypeView.css";
-import { pokeClasses } from "../pokeClasses";
-import bulbasaur from "../assets/bulbasaur.png";
-import { arrayExpression } from "@babel/types";
 const TypeView = ({ type }) => {
-  const { typeName, doubleDamageFrom, mons } = type;
+  const { typeName, doubleDamageFrom } = type;
 
   // console.log(mons);
   // const scott = mons.map(result => console.log(result));

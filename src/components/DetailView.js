@@ -1,7 +1,6 @@
 import React from "react";
 import "./styles/DetailView.css";
 import Dropdown from "react-bootstrap/Dropdown";
-import "./styles/TypeMon.css";
 
 const DetailView = ({
   pokemon,
@@ -22,18 +21,6 @@ const DetailView = ({
 
   const doesType2Exist = type2Exist;
 
-  // if ((type2Exist = false)){
-  //   return (null);
-  // }else{
-  //   return (
-  //     <button onClick={() => handleSelect(handleSelectFromButton2)}>
-  //       Type2:{type2}
-  //     </button>
-  //   )
-  // }
-  // console.log(doesType2Exist);
-  // console.log(type2);
-
   // const moveListUrls = (
   //   <ul>
   //     {" "}
@@ -42,32 +29,33 @@ const DetailView = ({
   //     ))}
   //   </ul>
   // );
-  const moveListUrls = moves.map(result => result.move.url);
-  const moveListSlice = moveListUrls.map(result => result.slice(31));
-  const replacedSlicedMove = moveListSlice.map(result =>
-    result.replace(/[^\d.-]/g, "")
-  );
-  const parseIntMove = replacedSlicedMove.map(result => parseInt(result));
-  console.log(parseIntMove);
-  // const moveListNames = (
-  //   <ul className="plain">
-  //     {" "}
-  //     {moves.map(result => (
-  //       <li key={result.move.name}>{result.move.name}</li>
-  //     ))}
-  //   </ul>
+  // const moveListUrls = moves.map(result => result.move.url);
+  // const moveListSlice = moveListUrls.map(result => result.slice(31));
+  // const replacedSlicedMove = moveListSlice.map(result =>
+  //   result.replace(/[^\d.-]/g, "")
   // );
+  // const parseIntMove = replacedSlicedMove.map(result => parseInt(result));
+  // console.log(parseIntMove);
 
   const moveListNames = (
     <ul className="plain">
-      {moves.map((str, idx) => (
-        <li key={str}>
-          {str}
-          {parseIntMove[idx]}
-        </li>
+      {" "}
+      {moves.map(result => (
+        <li key={result.move.name}>{result.move.name}</li>
       ))}
     </ul>
   );
+
+  // const moveListNames = (
+  //   <ul className="plain">
+  //     {moves.map((str, idx) => (
+  //       <li key={str}>
+  //         {str}
+  //         {parseIntMove[idx]}
+  //       </li>
+  //     ))}
+  //   </ul>
+  // );
 
   return (
     <section className="detail-view">
@@ -91,16 +79,15 @@ const DetailView = ({
         )}
 
         <h1 className="data-name">{name}</h1>
-        <button onClick={() => handleShinyClick()}>Shiny </button>
-        {/* <button onClick={() => handleTypeClick(type)}>Type : {type}</button> */}
-        {/* <p className="data-char">Type: {type}</p> */}
+
         <Dropdown>
-          <Dropdown.Toggle variant="success" id="type-mon">
+          <Dropdown.Toggle variant="success" id="dropdown-basic">
             moves
           </Dropdown.Toggle>
           <Dropdown.Menu>
             <Dropdown.Item> {moveListNames}</Dropdown.Item>
           </Dropdown.Menu>
+          <button onClick={() => handleShinyClick()}>Shiny </button>
         </Dropdown>
       </div>
     </section>

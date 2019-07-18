@@ -5,7 +5,11 @@ import "./styles/TypeMon.css";
 const DropDown = ({ handleSelect }) => {
   return (
     <Dropdown>
-      <Dropdown.Toggle variant="success" id="dropdown-basic">
+      <Dropdown.Toggle
+        variant="success"
+        id="dropdown-basic"
+        className="dropdown"
+      >
         Choose Type
       </Dropdown.Toggle>
 

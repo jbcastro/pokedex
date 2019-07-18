@@ -13,12 +13,12 @@ class Pokemon {
       this.type2 = null;
     }
 
-    const moveApiData = data.moves;
+    this.moves = data.moves;
     // console.log(moveApiData)
 
     // console.log(moveList)
 
-    this.moves = moveApiData;
+    // this.moves = moveApiData;
 
     this.shiny = data.sprites.front_shiny;
   }

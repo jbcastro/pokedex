@@ -32,7 +32,8 @@ class App extends Component {
       doubleDamageFrom: [],
       reUrlInts: [],
       namesAndPics: {},
-      moves: {}
+      moves: {},
+      limitParseInts: []
     };
 
     this.handleOnClick = this.handleOnClick.bind(this);
@@ -92,7 +93,7 @@ class App extends Component {
         //       console.log(parseIntUrls);
 
         const limitParseInts = parseIntUrls.filter(result => result < 151);
-
+        this.setState({ limitParseInts: limitParseInts });
         // console.log(limitParseInts);
         // const snow = parseInt(sliceApiUrls);
         const stringinfyInts = limitParseInts.map(result => String(result));
@@ -119,27 +120,12 @@ class App extends Component {
         );
         // console.log(intPics);
 
-        const jake = Array.from(intPics.keys());
-        // console.log(jake);
-
-        const chambers = jake.map(result => "id:" + result);
-        // console.log(chambers);
-
         this.setState({ intPics: intPics });
 
         const gen1NamesOnly = Array.from(limitNamesToGen1);
         // console.log(gen1NamesOnly);
 
         this.setState({ names: gen1NamesOnly });
-        const dogg = { intPics, gen1NamesOnly };
-        // console.log(dogg);
-
-        const bloc = Array.from(dogg);
-        // console.log(bloc);
-        // this.setState({ namesAndPics: dogg });
-
-        const map = new Map(gen1NamesOnly, intPics);
-        // console.log(map);
       })
 
       .catch(err => console.log(err));
@@ -211,7 +197,12 @@ class App extends Component {
             intPics={this.state.intPics}
             // type2={this.state.intPics}
           />
-          <TypeMon names={this.state.names} intPics={this.state.intPics} />
+          <TypeMon
+            names={this.state.names}
+            intPics={this.state.intPics}
+            limitParseInts={this.state.limitParseInts}
+            handleOnClick={this.handleOnClick}
+          />
         </div>
       );
     } else {
@@ -245,7 +236,12 @@ class App extends Component {
             intPics={this.state.intPics}
             // type2={this.state.intPics}
           />
-          <TypeMon names={this.state.names} intPics={this.state.intPics} />
+          <TypeMon
+            names={this.state.names}
+            intPics={this.state.intPics}
+            limitParseInts={this.state.limitParseInts}
+            handleOnClick={this.handleOnClick}
+          />
         </div>
       );
     }

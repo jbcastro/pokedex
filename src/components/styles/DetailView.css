@@ -1,5 +1,5 @@
 .detail-view {
-  width: 30%;
+  width: 20%;
   height: 100%;
   padding: 10px;
   background-color: #df095e;
@@ -20,7 +20,7 @@
 }
 
 .data-wrapper {
-  width: 80%;
+  width: flex;
   height: flex;
   padding: 10px;
   margin: 0 auto;
@@ -52,3 +52,13 @@ ul.plain {
 button {
   color: red;
 }
+.dropDetail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+/* .dropdown2 {
+  position: absolute;
+  top: -40%;
+  left: 5.5%;
+} */
