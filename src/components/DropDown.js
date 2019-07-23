@@ -2,6 +2,8 @@ import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import "./styles/TypeMon.css";
 
+//this dropdown uses the handleSelect function in order to view the type
+
 const DropDown = ({ handleSelect }) => {
   return (
     <Dropdown>
@@ -127,13 +129,16 @@ const DropDown = ({ handleSelect }) => {
         >
           Dragon
         </Dropdown.Item>
-        <Dropdown.Item
+        
+        {/* <Dropdown.Item
           onClick={() => {
             handleSelect("dark");
           }}
         >
           Dark
-        </Dropdown.Item>
+        </Dropdown.Item> 
+        there is no dark in gen 1
+        */}
         <Dropdown.Item
           onClick={() => {
             handleSelect("fairy");
@@ -148,59 +153,3 @@ const DropDown = ({ handleSelect }) => {
 
 export default DropDown;
 
-// function danny(id, dan) {
-//   fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
-//     .then(res => res.json())
-//     .then(data => {
-//       const dan = "1";
-//       console.log(dan + " dan");
-//       // const typeFilterId = typeFilter.map(value => {
-//       //   return value.id;
-//       // });
-//     });
-// }
-// const setBillList = ({ typeFilterId, typeFilterName }) => {
-//   typeFilterId = typeFilter.map(value => {
-//     return value.id;
-//   });
-//   typeFilterName = typeFilter.map(value => {
-//     return value.name;
-//   });
-// };
-// console.log(setBillList);
-// const typeFilterId = typeFilter.map(value => {
-//   return value.id;
-// });
-// console.log(typeFilterId);
-// const typeFilterName = typeFilter.map(value => {
-//   return value.name;
-// });
-// console.log(typeFilterName);
-// console.log(setBillList);
-
-// const gregg = typeFilterId => {
-//   fetch(`https://pokeapi.co/api/v2/pokemon/${typeFilterId}`)
-//     .then(res => res.json())
-//     .then(data => {
-//       const connie = new BillList(data);
-//       console.log(connie);
-//     });
-// };
-
-// console.log(danny.dan);
-
-// console.log(typeFilterId);
-// console.log(typeFilter);
-// console.log("bill " + bill);
-
-// const bill = type.type;
-
-// const typeFilter = pokeClasses.filter(steve => {
-//   return steve.type.toLowerCase() === bill;
-// });
-
-// const typeFilterName = typeFilter.map(value => {
-//   return value.name;
-// });
-
-// console.log("bill " + bill);

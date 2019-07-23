@@ -1,14 +1,15 @@
 import React from "react";
 import "./styles/PokeList.css";
-import uniqueid from "uniqid";
 
+//get props for names, intPics, parseInts, and handleOnClick button
 const TypeMon = props => {
   const names = props.names;
   const intPics = props.intPics;
   const parseInts = props.limitParseInts;
-
   const handleOnClick = props.handleOnClick;
 
+  //map the names and the corresponding parseInts  into a list in order to set the detailview 
+  //with the pokemon in the TypeMon view instead of the pokecell
   const listItems = names.map((str, idx) => (
     <button
       key={idx}
@@ -28,26 +29,6 @@ const TypeMon = props => {
   );
 };
 
-// const TypeMon = props => {
-//   const intPics = props.intPics;
-//   // const intPics = intPics2.map(result => fetch(result));
-//   const names = props.names;
-//   const limitParseInts = props.limitParseInts;
 
-//   const listItems = names.map((str, idx) => (
-//     <button onClick={() => handleOnClick(id)} className="type-cell">
-//       <li key={limitParseInts[idx]}>{str}</li>
-//       <li key={limitParseInts[idx + 100]}>
-//         <img src={intPics[idx]} alt={str} />
-//       </li>
-//     </button>
-//   ));
-
-//   return (
-//     <section className="type-mon">
-//       <ul>{listItems}</ul>
-//     </section>
-//   );
-// };
 
 export default TypeMon;

@@ -4,7 +4,7 @@ class Pokemon {
     this.name = data.name;
     this.sprite = data.sprites.front_default;
     this.typesCount = data.types.length;
-    // console.log(typesCount);
+    
     this.type = data.types[0].type.name;
 
     if (this.typesCount === 2) {
@@ -14,11 +14,7 @@ class Pokemon {
     }
 
     this.moves = data.moves;
-    // console.log(moveApiData)
-
-    // console.log(moveList)
-
-    // this.moves = moveApiData;
+  
 
     this.shiny = data.sprites.front_shiny;
   }

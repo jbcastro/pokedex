@@ -3,9 +3,12 @@ import PokeCell from "./PokeCell";
 import { pokeClasses } from "../pokeClasses";
 import "./styles/PokeList.css";
 
+//this is from Juan Diego Jimenez where I intially started this pokedex
+//https://blog.cloudboost.io/lets-build-a-pokedex-with-react-part-1-e1ba0b9387a7
+
 const PokeList = ({ handleOnClick }) => {
   const cells = pokeClasses.map(pokeClass => {
-    // console.log({ pokeClass });
+    
     return (
       <PokeCell
         key={pokeClass.id}
@@ -13,7 +16,6 @@ const PokeList = ({ handleOnClick }) => {
         handleOnClick={handleOnClick}
         type={pokeClass.type}
 
-        // pokeType={pokeClass.type}
       />
     );
   });

@@ -1,21 +1,23 @@
 import React, { Component } from "react";
 import PokeList from "./PokeList";
 import DetailView from "./DetailView";
-// import ShinyView from "./ShinyView";
 import Unselectedview from "./UnselectedView";
 import Pokemon from "../Pokemon";
 import Type from "../Type";
-// import PokeTypeList from "../PokeTypeList"
 import TypeView from "./TypeView";
 import TypeMon from "./TypeMon";
-// import Type2 from "../Type2";
 import DropDown from "./DropDown";
-// import BillList from "./BillList";
-// import TypeList from "./TypeList";
-import Moves from "../Moves";
-
 import "./styles/App.css";
-// import { pokeClasses } from "../pokeClasses";
+
+//The Codeslinger's creed
+//I do not click with my hand; he who clicks with his hand has forgotten the face of his father
+//I click with my eye
+//
+//I do not type with my hand; he who types with his hand has forgotten the face of his father
+//I type with my mind
+//
+//I do not code with my computer; he who codes with his computer has forgotten the face of his father
+//I code with my heart
 
 class App extends Component {
   constructor(props) {
@@ -31,18 +33,22 @@ class App extends Component {
       type2Exist: true,
       doubleDamageFrom: [],
       reUrlInts: [],
-      namesAndPics: {},
-      moves: {},
       limitParseInts: []
     };
 
-    this.handleOnClick = this.handleOnClick.bind(this);
-    // this.handleTypeFilter = this.handleTypeFilter.bind(this);
-    this.handleShinyClick = this.handleShinyClick.bind(this);
+    //handleSelect sets the type of the pokemon as well as filters it
+    //to just gen 1
     this.handleSelect = this.handleSelect.bind(this);
-    this.handleMoveClick = this.handleMoveClick.bind(this);
+
+    //handleOnClick sets the pokemon state and gets the individual pokemon data
+    this.handleOnClick = this.handleOnClick.bind(this);
+    
+    //handleShinyClick changes the pics from shiny to not shiny
+    this.handleShinyClick = this.handleShinyClick.bind(this);
+    
+    
   }
-  //handles type select from dropdown
+  //handles type select from dropdown or when a type button is clicked in detail view
   handleSelect = event => {
     fetch(`https://pokeapi.co/api/v2/type/${event}/`)
       .then(res => res.json())
@@ -50,22 +56,11 @@ class App extends Component {
       .then(data => {
         //sets the type
         const type = new Type(data);
-
-        // const dubDamageFrom0 = data.damage_relations.double_damage_from[0].name;
-        // this.setState({ doubleDamageFrom: dubDamageFrom0 });
         this.setState({ type });
 
         //gets all the info for each pokemon in that type,
         //reading the /v2/type/X/pokeApiData
         const pokeApiData = data.pokemon;
-        // console.log(pokeApiData);
-
-        //maps the pokemon that I have in the array in order to,
-        //in theory, cross reference with the ones from the PokeAPI
-        // const laura = pokeClasses.map(value => {
-        //   return value.name.toLowerCase();
-        // });
-        // console.log(laura);
 
         //maps the names and urls for pokeAPI
         const mapNameData = p => p.pokemon.name;
@@ -73,107 +68,95 @@ class App extends Component {
         const apiNames = pokeApiData.map(mapNameData);
         const apiUrls = pokeApiData.map(mapApiData);
 
-        // console.log(apiUrls);
-        // var res = apiUrls.substr(1, 33);
-        // console.log(res);
-
-        // console.log(apiNames);
-        // console.log(apiUrls);
-
+       
+        //slices the first p34 characters of the the api urls to be left with just a 
+        //number ie "3/"
         const sliceApiUrls = apiUrls.map(result => result.slice(34));
-        // console.log(sliceApiUrls)
-
+        
+        //removes the "/" from the end of the sliced api url
         const replaceSlicedApi = sliceApiUrls.map(result =>
           result.replace(/[^\d.-]/g, "")
         );
-        // console.log(replaceSlicedApi);
-
+        
+        //turns the sliced api to a number
         const parseIntUrls = replaceSlicedApi.map(result => parseInt(result));
 
-        //       console.log(parseIntUrls);
-
+        
+        //filters the sliced api to only first 151 pokemon (gen1) then sets state for the
+        //prop to be used in TypeMon
         const limitParseInts = parseIntUrls.filter(result => result < 151);
         this.setState({ limitParseInts: limitParseInts });
-        // console.log(limitParseInts);
-        // const snow = parseInt(sliceApiUrls);
+        
+        //stringinfy the number in order to put it back into a url
         const stringinfyInts = limitParseInts.map(result => String(result));
-        // console.log(stringinfyInts)
-
+        
+        //turns the stringified number back into a url and sets state
         const reUrlInts = stringinfyInts.map(
           result => "https://pokeapi.co/api/v2/pokemon/" + result + "/"
         );
-        // console.log(reUrlInts);
         this.setState({ reUrlInts: reUrlInts });
-        // console.log(pokeApiData)
-
+        
+        //gets the length of the array in order to not render the pokemon that are not gen 1
+        //for instance gen 1 has 5 fairy types so this function and the next one (limitNamesToGen1)
+        //would slice the array to just the first 5, instead of the 59 that exist in all the pokemon universe 
         const urlIntLength = reUrlInts.length;
-        // console.log(urlIntLength)
-
         const limitNamesToGen1 = apiNames.slice(0, urlIntLength);
-        // console.log(limitNamesToGen1);
 
+        //makes and array and sets the state of the gen1 names in order to fill the list in Typemon
+        const gen1NamesOnly = Array.from(limitNamesToGen1);
+        this.setState({ names: gen1NamesOnly });
+       
+        //sets the state of intPics in an array to use to fetch the pics of the pokemon used for
+        //specefic types in TypeMon
         const intPics = stringinfyInts.map(
           result =>
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" +
             result +
             ".png"
         );
-        // console.log(intPics);
-
         this.setState({ intPics: intPics });
 
-        const gen1NamesOnly = Array.from(limitNamesToGen1);
-        // console.log(gen1NamesOnly);
 
-        this.setState({ names: gen1NamesOnly });
+        
       })
 
       .catch(err => console.log(err));
   };
 
-  // handleTypeFilter = event => {
-  //   this.setState({ names: event });
-  // };
 
+  //button that will show the shiny version of the pokemon
   handleShinyClick = e => {
     this.setState(state => ({ isNotShiny: !this.state.isNotShiny }));
   };
+
+  //sets the pokemon from the pokelist to be seen in detail view
   handleOnClick = id => {
     fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
       .then(res => res.json())
       .then(data => {
+        //sets state of pokemon
         const pokemon = new Pokemon(data);
-
         this.setState({ pokemon });
 
+        //checks to see if the pokemon has duel type then sets state
+        //if it has 1 then it will not render a button in DetailView
         const typesCount = data.types.length;
-        // console.log(typesCount);
-
         if (typesCount === 1) {
           this.setState(prevState => ({ type2Exist: false }));
         } else {
           this.setState(prevState => ({ type2Exist: true }));
         }
 
-        // console.log(pokemon);
+       
       })
       .catch(err => console.log(err));
   };
-  handleMoveClick = id => {
-    fetch(`https://pokeapi.co/api/v2/move/${id}`)
-      .then(res => res.json())
-      .then(data => {
-        const moves = new Moves(data);
-        this.setState({ moves });
-      })
-      .catch(err => console.log(err));
-  };
+ 
 
   render() {
+    //if the user has not selected a pokemon it will render a picture of Ash
     const unselected1 = this.state.pokemon === "unselected";
-    // const isNotShiny1 = this.state.isNotShiny;
-    // const castro = this.state.names;
-    // console.log(castro)
+    
 
     if (unselected1) {
       return (
@@ -187,15 +170,13 @@ class App extends Component {
             names={this.state.names}
           />
           <TypeView
-            // names={this.state.names}
-            // typeName={this.state.typeName}
-            // intUrls={this.state.intUrls}
+           
             doubleDamageFrom={this.state.doubleDamageFrom}
-            // reUrlInts={this.state.reUrlInts}
+            
             type={this.state.type}
             names={this.state.names}
             intPics={this.state.intPics}
-            // type2={this.state.intPics}
+            
           />
           <TypeMon
             names={this.state.names}
@@ -226,15 +207,13 @@ class App extends Component {
             names={this.state.names}
           />
           <TypeView
-            // names={this.state.names}
-            // typeName={this.state.typeName}
-            // intUrls={this.state.intUrls}
+            
             doubleDamageFrom={this.state.doubleDamageFrom}
-            // reUrlInts={this.state.reUrlInts}
+            
             type={this.state.type}
             names={this.state.names}
             intPics={this.state.intPics}
-            // type2={this.state.intPics}
+            
           />
           <TypeMon
             names={this.state.names}
@@ -250,154 +229,3 @@ class App extends Component {
 
 export default App;
 
-// handleTypeFitlering(id) {
-//   fetch(`http://pokeapi.co/api/v2/type/${id}`)
-//     .then(res => res.json())
-//     .then(data => {})
-//     .catch(err => console.log(err));
-// }
-
-// handleTypeClick(type) {
-//   fetch(`http://pokeapi.co/api/v2/type/${type}/pokemon/[0]/url/`)
-//     .then(res => res.json())
-//     .then(data => {
-//       const type = new Pokemon(data);
-//       this.setState({ type });
-//     })
-//     .catch(err => console.log(err));
-//   console.log({ type });
-// }
-
-// render() {
-//   const unselected1 = this.state.pokemon;
-//   const isShiny1 = this.state.isShiny;
-//   return (
-//     <div className="App">
-//       {unselected1 === "unselected" ? (
-//         <div>
-//           <PokeList handleOnClick={this.handleOnClick} />
-//           <Unselectedview pokemon={this.state.pokemon} />
-//           <DropDown handleSelect={this.handleSelect} type={this.state.type} />
-//         </div>
-//       ) : (
-//         <div>
-//           <PokeList handleOnClick={this.handleOnClick} />
-//           <DetailView
-//             pokemon={this.state.pokemon}
-//             handleTypeClick={this.handleTypeClick}
-//             handleShinyClick={this.handleShinyClick}
-//           />
-//           <DropDown handleSelect={this.handleSelect} type={this.state.type} />
-//         </div>
-//       )}
-//       {isShiny1 ? (
-//         <div>
-//           <PokeList handleOnClick={this.handleOnClick} />
-//           <DetailView
-//             pokemon={this.state.pokemon}
-//             handleTypeClick={this.handleTypeClick}
-//             handleShinyClick={this.handleShinyClick}
-//           />
-//           <DropDown handleSelect={this.handleSelect} type={this.state.type} />
-//         </div>
-//       ) : (
-//         <div>
-//           <PokeList handleOnClick={this.handleOnClick} />
-//           <ShinyView
-//             pokemon={this.state.pokemon}
-//             handleTypeClick={this.handleTypeClick}
-//             handleShinyClick={this.handleShinyClick}
-//           />
-//           <DropDown handleSelect={this.handleSelect} type={this.state.type} />
-//         </div>
-//       )}
-//     </div>
-//   );
-// }
-
-// getSnapshotBeforeUpdate(prevProps, prevState) {
-//   if (prevProps.names.length != this.props.names.length) {
-//     console.log("cool");
-//   }
-// }
-// componentDidUpdate(prevProps, prevState, snapshot) {
-//   // If we have a snapshot value, we've just added new items.
-//   // Adjust scroll so these new items don't push the old ones out of view.
-//   // (snapshot here is the value returned from getSnapshotBeforeUpdate)
-//   if (snapshot !== null) {
-//     const list = this.listRef.current;
-//     list.scrollTop = list.scrollHeight - snapshot;
-//   }
-// }
-// handleSelect = id => {
-//   fetch(`https://pokeapi.co/api/v2/type/${id}/`)
-//     .then(res => res.json())
-
-//     .then(data => {
-//       const type = new Type(data);
-
-//       this.setState({ type });
-//     })
-
-//     .catch(err => console.log(err));
-//   // this.setState({ name: typeFilterName });
-//   console.log(this.state.names);
-// };
-
-// const kiwi = pokeApiData.map(value=>{
-//   return value.pokemon.url.toLowerCase()
-// })
-// console.log(kiwi)
-
-// const ash = apiUrls.forEach((emotion) => emotion.slice(0,8))
-
-// const ally = ash.slice(1)
-// console.log(ash)
-// console.log(ally)
-
-// const angie = apiNames.filter(age=>age !== laura)
-// console.log(angie)
-
-// const suze = apiNames.filter(age=>age===angie)
-// console.log(suze)
-
-// function myFunction(){
-//   apiUrls.slice(0,8)
-// }
-
-// const res = apiUrls.slice(0,8);
-// console.log(res)
-
-//set state of list of pokemon by type
-
-//parses id in pokeClasses since they are strings and
-//I don't feel like changing them all to intergers
-// const idParsing = pokeClasses.map(value => {
-//   return parseInt(value.id);
-// });
-
-// this.setState({numberz:roland})
-// console.log(roland)
-// console.log(idParsing);
-
-// const chief = apiNames.filter(value => {
-//   return value === laura;
-// });
-// console.log(chief);
-
-// this.setState({ liz: chief });
-
-// const ryan = lily.filter(value => {
-//   return value.name.toLowerCase() === laura;
-// });
-
-// console.log(ryan);
-
-// if (apiNames === laura) {
-//   console.log("cool");
-// }
-
-// const mappingFunction3 = p => p.pokeClasses.id;
-
-// if (apiUrls == "https://pokeapi.co/api/v2/pokemon/85/") {
-// }

@@ -2,8 +2,9 @@ import React from "react";
 import "./styles/DetailView.css";
 import ash from "../img/ash.png";
 
+//a view if a pokemon is unselected
 const UnselectedView = ({ pokemon }) => {
-  // const { id, name, type, moves } = pokemon;
+  
 
   return (
     <section className="detail-view">
