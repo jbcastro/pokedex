@@ -57,7 +57,8 @@ class App extends Component {
         //sets the type
         const type = new Type(data);
         this.setState({ type });
-
+        this.setState({typeName:type.typeName})
+        this.setState({doubleDamageFrom:type.doubleDamageFrom})
         //gets all the info for each pokemon in that type,
         //reading the /v2/type/X/pokeApiData
         const pokeApiData = data.pokemon;
@@ -169,7 +170,7 @@ class App extends Component {
             type={this.state.type}
             names={this.state.names}
           />
-          <TypeView
+          {/* <TypeView
            
             doubleDamageFrom={this.state.doubleDamageFrom}
             
@@ -177,12 +178,15 @@ class App extends Component {
             names={this.state.names}
             intPics={this.state.intPics}
             
-          />
+          /> */}
           <TypeMon
             names={this.state.names}
             intPics={this.state.intPics}
             limitParseInts={this.state.limitParseInts}
             handleOnClick={this.handleOnClick}
+            doubleDamageFrom={this.state.doubleDamageFrom}
+            
+            typeName={this.state.typeName}
           />
         </div>
       );
@@ -206,7 +210,7 @@ class App extends Component {
             type={this.state.type}
             names={this.state.names}
           />
-          <TypeView
+          {/* <TypeView
             
             doubleDamageFrom={this.state.doubleDamageFrom}
             
@@ -214,8 +218,11 @@ class App extends Component {
             names={this.state.names}
             intPics={this.state.intPics}
             
-          />
+          /> */}
           <TypeMon
+          doubleDamageFrom={this.state.doubleDamageFrom}
+            
+          typeName={this.state.typeName}
             names={this.state.names}
             intPics={this.state.intPics}
             limitParseInts={this.state.limitParseInts}

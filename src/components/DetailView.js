@@ -35,22 +35,23 @@ const DetailView = ({
 
   return (
     <section className="detail-view">
-      {/* choses which sprite to render whether it is shiny or not */}
+     
+
+      <div className="data-wrapper">
+         {/* choses which sprite to render whether it is shiny or not */}
       {notShiny ? (
         <img src={sprite} className="sprite-image" alt="sprite" />
       ) : (
         <img src={shiny} className="sprite-image" alt="shiny" />
       )}
-
-      <div className="data-wrapper">
         {/* buttons to handle the type click or each pokemon */}
-        <button onClick={() => handleSelect(handleSelectFromButton)}>
-          Type:{type}
+        <button  onClick={() => handleSelect(handleSelectFromButton)}>
+          Type: {type}
         </button>
 
         {doesType2Exist ? (
           <button onClick={() => handleSelect(handleSelectFromButton2)}>
-            Type2:{type2}
+            Type2: {type2}
           </button>
         ) : (
           <h1 />

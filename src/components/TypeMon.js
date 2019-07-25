@@ -1,5 +1,7 @@
 import React from "react";
 import "./styles/PokeList.css";
+import "./styles/DetailView.css";
+
 
 //get props for names, intPics, parseInts, and handleOnClick button
 const TypeMon = props => {
@@ -7,7 +9,10 @@ const TypeMon = props => {
   const intPics = props.intPics;
   const parseInts = props.limitParseInts;
   const handleOnClick = props.handleOnClick;
+  const typeName = props.typeName;
+  const doubleDamageFrom = props.doubleDamageFrom
 
+  
   //map the names and the corresponding parseInts  into a list in order to set the detailview 
   //with the pokemon in the TypeMon view instead of the pokecell
   const listItems = names.map((str, idx) => (
@@ -23,9 +28,16 @@ const TypeMon = props => {
     </button>
   ));
   return (
-    <section className="type-mon">
+
+    <div className="type-mon">
+      <p>Type: {typeName}</p>
+      <p>Weak Against: {doubleDamageFrom}</p>
+      
       <ul>{listItems}</ul>
-    </section>
+     
+      
+      </div>
+    
   );
 };
 
