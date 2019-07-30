@@ -42,11 +42,9 @@ class App extends Component {
 
     //handleOnClick sets the pokemon state and gets the individual pokemon data
     this.handleOnClick = this.handleOnClick.bind(this);
-    
+
     //handleShinyClick changes the pics from shiny to not shiny
     this.handleShinyClick = this.handleShinyClick.bind(this);
-    
-    
   }
   //handles type select from dropdown or when a type button is clicked in detail view
   handleSelect = event => {
@@ -57,8 +55,8 @@ class App extends Component {
         //sets the type
         const type = new Type(data);
         this.setState({ type });
-        this.setState({typeName:type.typeName})
-        this.setState({doubleDamageFrom:type.doubleDamageFrom})
+        this.setState({ typeName: type.typeName });
+        this.setState({ doubleDamageFrom: type.doubleDamageFrom });
         //gets all the info for each pokemon in that type,
         //reading the /v2/type/X/pokeApiData
         const pokeApiData = data.pokemon;
@@ -69,61 +67,53 @@ class App extends Component {
         const apiNames = pokeApiData.map(mapNameData);
         const apiUrls = pokeApiData.map(mapApiData);
 
-       
-        //slices the first p34 characters of the the api urls to be left with just a 
+        //slices the first p34 characters of the the api urls to be left with just a
         //number ie "3/"
         const sliceApiUrls = apiUrls.map(result => result.slice(34));
-        
+
         //removes the "/" from the end of the sliced api url
         const replaceSlicedApi = sliceApiUrls.map(result =>
           result.replace(/[^\d.-]/g, "")
         );
-        
+
         //turns the sliced api to a number
         const parseIntUrls = replaceSlicedApi.map(result => parseInt(result));
 
-        
         //filters the sliced api to only first 151 pokemon (gen1) then sets state for the
         //prop to be used in TypeMon
         const limitParseInts = parseIntUrls.filter(result => result < 151);
         this.setState({ limitParseInts: limitParseInts });
-        
+
         //stringinfy the number in order to put it back into a url
         const stringinfyInts = limitParseInts.map(result => String(result));
-        
+
         //turns the stringified number back into a url and sets state
         const reUrlInts = stringinfyInts.map(
-          result => "https://pokeapi.co/api/v2/pokemon/" + result + "/"
+          result => `https://pokeapi.co/api/v2/pokemon/${result}/`
         );
         this.setState({ reUrlInts: reUrlInts });
-        
+
         //gets the length of the array in order to not render the pokemon that are not gen 1
         //for instance gen 1 has 5 fairy types so this function and the next one (limitNamesToGen1)
-        //would slice the array to just the first 5, instead of the 59 that exist in all the pokemon universe 
+        //would slice the array to just the first 5, instead of the 59 that exist in all the pokemon universe
         const urlIntLength = reUrlInts.length;
         const limitNamesToGen1 = apiNames.slice(0, urlIntLength);
 
         //makes and array and sets the state of the gen1 names in order to fill the list in Typemon
         const gen1NamesOnly = Array.from(limitNamesToGen1);
         this.setState({ names: gen1NamesOnly });
-       
+
         //sets the state of intPics in an array to use to fetch the pics of the pokemon used for
         //specefic types in TypeMon
         const intPics = stringinfyInts.map(
           result =>
-            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" +
-            result +
-            ".png"
+            `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${result}.png`
         );
         this.setState({ intPics: intPics });
-
-
-        
       })
 
       .catch(err => console.log(err));
   };
-
 
   //button that will show the shiny version of the pokemon
   handleShinyClick = e => {
@@ -147,17 +137,13 @@ class App extends Component {
         } else {
           this.setState(prevState => ({ type2Exist: true }));
         }
-
-       
       })
       .catch(err => console.log(err));
   };
- 
 
   render() {
     //if the user has not selected a pokemon it will render a picture of Ash
     const unselected1 = this.state.pokemon === "unselected";
-    
 
     if (unselected1) {
       return (
@@ -185,7 +171,6 @@ class App extends Component {
             limitParseInts={this.state.limitParseInts}
             handleOnClick={this.handleOnClick}
             doubleDamageFrom={this.state.doubleDamageFrom}
-            
             typeName={this.state.typeName}
           />
         </div>
@@ -220,9 +205,8 @@ class App extends Component {
             
           /> */}
           <TypeMon
-          doubleDamageFrom={this.state.doubleDamageFrom}
-            
-          typeName={this.state.typeName}
+            doubleDamageFrom={this.state.doubleDamageFrom}
+            typeName={this.state.typeName}
             names={this.state.names}
             intPics={this.state.intPics}
             limitParseInts={this.state.limitParseInts}
@@ -235,4 +219,3 @@ class App extends Component {
 }
 
 export default App;
-
