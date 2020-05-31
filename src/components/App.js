@@ -9,16 +9,6 @@ import TypeMon from "./TypeMon";
 import DropDown from "./DropDown";
 import "./styles/App.css";
 
-//The Codeslinger's creed
-//I do not click with my hand; he who clicks with his hand has forgotten the face of his father
-//I click with my eye
-//
-//I do not type with my hand; he who types with his hand has forgotten the face of his father
-//I type with my mind
-//
-//I do not code with my computer; he who codes with his computer has forgotten the face of his father
-//I code with my heart
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -33,7 +23,7 @@ class App extends Component {
       type2Exist: true,
       doubleDamageFrom: [],
       reUrlInts: [],
-      limitParseInts: []
+      limitParseInts: [],
     };
 
     //handleSelect sets the type of the pokemon as well as filters it
@@ -47,11 +37,11 @@ class App extends Component {
     this.handleShinyClick = this.handleShinyClick.bind(this);
   }
   //handles type select from dropdown or when a type button is clicked in detail view
-  handleSelect = event => {
+  handleSelect = (event) => {
     fetch(`https://pokeapi.co/api/v2/type/${event}/`)
-      .then(res => res.json())
+      .then((res) => res.json())
 
-      .then(data => {
+      .then((data) => {
         //sets the type
         const type = new Type(data);
         this.setState({ type });
@@ -62,34 +52,34 @@ class App extends Component {
         const pokeApiData = data.pokemon;
 
         //maps the names and urls for pokeAPI
-        const mapNameData = p => p.pokemon.name;
-        const mapApiData = p => p.pokemon.url;
+        const mapNameData = (p) => p.pokemon.name;
+        const mapApiData = (p) => p.pokemon.url;
         const apiNames = pokeApiData.map(mapNameData);
         const apiUrls = pokeApiData.map(mapApiData);
 
         //slices the first p34 characters of the the api urls to be left with just a
         //number ie "3/"
-        const sliceApiUrls = apiUrls.map(result => result.slice(34));
+        const sliceApiUrls = apiUrls.map((result) => result.slice(34));
 
         //removes the "/" from the end of the sliced api url
-        const replaceSlicedApi = sliceApiUrls.map(result =>
+        const replaceSlicedApi = sliceApiUrls.map((result) =>
           result.replace(/[^\d.-]/g, "")
         );
 
         //turns the sliced api to a number
-        const parseIntUrls = replaceSlicedApi.map(result => parseInt(result));
+        const parseIntUrls = replaceSlicedApi.map((result) => parseInt(result));
 
         //filters the sliced api to only first 151 pokemon (gen1) then sets state for the
         //prop to be used in TypeMon
-        const limitParseInts = parseIntUrls.filter(result => result < 151);
+        const limitParseInts = parseIntUrls.filter((result) => result < 151);
         this.setState({ limitParseInts: limitParseInts });
 
         //stringinfy the number in order to put it back into a url
-        const stringinfyInts = limitParseInts.map(result => String(result));
+        const stringinfyInts = limitParseInts.map((result) => String(result));
 
         //turns the stringified number back into a url and sets state
         const reUrlInts = stringinfyInts.map(
-          result => `https://pokeapi.co/api/v2/pokemon/${result}/`
+          (result) => `https://pokeapi.co/api/v2/pokemon/${result}/`
         );
         this.setState({ reUrlInts: reUrlInts });
 
@@ -106,25 +96,25 @@ class App extends Component {
         //sets the state of intPics in an array to use to fetch the pics of the pokemon used for
         //specefic types in TypeMon
         const intPics = stringinfyInts.map(
-          result =>
+          (result) =>
             `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${result}.png`
         );
         this.setState({ intPics: intPics });
       })
 
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   };
 
   //button that will show the shiny version of the pokemon
-  handleShinyClick = e => {
-    this.setState(state => ({ isNotShiny: !this.state.isNotShiny }));
+  handleShinyClick = (e) => {
+    this.setState((state) => ({ isNotShiny: !this.state.isNotShiny }));
   };
 
   //sets the pokemon from the pokelist to be seen in detail view
-  handleOnClick = id => {
+  handleOnClick = (id) => {
     fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         //sets state of pokemon
         const pokemon = new Pokemon(data);
         this.setState({ pokemon });
@@ -133,12 +123,12 @@ class App extends Component {
         //if it has 1 then it will not render a button in DetailView
         const typesCount = data.types.length;
         if (typesCount === 1) {
-          this.setState(prevState => ({ type2Exist: false }));
+          this.setState((prevState) => ({ type2Exist: false }));
         } else {
-          this.setState(prevState => ({ type2Exist: true }));
+          this.setState((prevState) => ({ type2Exist: true }));
         }
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   };
 
   render() {
@@ -219,3 +209,13 @@ class App extends Component {
 }
 
 export default App;
+
+//The Codeslinger's creed
+//I do not click with my hand; he who clicks with his hand has forgotten the face of his father
+//I click with my eye
+//
+//I do not type with my hand; he who types with his hand has forgotten the face of his father
+//I type with my mind
+//
+//I do not code with my computer; he who codes with his computer has forgotten the face of his father
+//I code with my heart
