@@ -7,11 +7,10 @@ const DetailView = ({
   handleShinyClick,
   isNotShiny,
   handleSelect,
-  type2Exist
-  
+  type2Exist,
 }) => {
   const { name, moves, sprite, type, shiny, type2 } = pokemon;
-  
+
   //gets the shiny status in order to set the shiny button
   const notShiny = isNotShiny;
 
@@ -26,29 +25,25 @@ const DetailView = ({
   const moveListNames = (
     <ul className="plain">
       {" "}
-      {moves.map(result => (
+      {moves.map((result) => (
         <li key={result.move.name}>{result.move.name}</li>
       ))}
     </ul>
   );
 
-
   return (
     <section className="detail-view">
-     
-
       <div className="data-wrapper">
-         {/* choses which sprite to render whether it is shiny or not */}
-      {notShiny ? (
-        <img src={sprite} className="sprite-image" alt="sprite" />
-      ) : (
-        <img src={shiny} className="sprite-image" alt="shiny" />
-      )}
+        {/* choses which sprite to render whether it is shiny or not */}
+        {notShiny ? (
+          <img src={sprite} className="sprite-image" alt="sprite" />
+        ) : (
+          <img src={shiny} className="sprite-image" alt="shiny" />
+        )}
         {/* buttons to handle the type click or each pokemon */}
-        <button  onClick={() => handleSelect(handleSelectFromButton)}>
+        <button onClick={() => handleSelect(handleSelectFromButton)}>
           Type: {type}
         </button>
-
         {doesType2Exist ? (
           <button onClick={() => handleSelect(handleSelectFromButton2)}>
             Type2: {type2}
@@ -56,9 +51,8 @@ const DetailView = ({
         ) : (
           <h1 />
         )}
-
         <h1 className="data-name">{name}</h1>
-          {/* dropdown of moves */}
+        {/* dropdown of moves */}
         <Dropdown>
           <Dropdown.Toggle variant="success" id="dropdown-basic">
             moves
