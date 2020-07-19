@@ -1,3 +1,6 @@
+Demo here https://jbcastro.github.io/pokedex/
+
+
 This project started from this tutorial https://blog.cloudboost.io/lets-build-a-pokedex-with-react-part-1-e1ba0b9387a7 In that tutorial Juan Diego Jimenez set up a Pokedex that would show sprites of the Gen 1 Pokemon. When a Pokemon was clicked it would get a picture, the Dex number, the name, and the type of selected Pokemon.
 
 Featues I have added
